@@ -47,4 +47,5 @@ public class Customer {
     public void setNumOfBins(int numOfBins) {
         this.numOfBins = numOfBins;
     }
+
 }
