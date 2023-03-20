@@ -16,6 +16,7 @@
 # The path of your repo on github. Don't include the whole URL, just the part after github.com/KenzieAcademy-SoftwareEngineering/
 export LBC_GROUP_NAME=teamruby
 export LBC_REPO_NAME=ata-lbc-project-aliciaortiz2022
+export GITHUB_TOKEN='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'
 
 # Do not modify the rest of these unless you have been instructed to do so.
 export LBC_PROJECT_NAME=lbcproject
