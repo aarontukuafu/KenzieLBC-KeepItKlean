@@ -54,4 +54,5 @@ import com.kenzie.appserver.service.model.PickupTime;
     public void setNumOfBins(int numOfBins) {
         this.numOfBins = numOfBins;
     }
+
 }
