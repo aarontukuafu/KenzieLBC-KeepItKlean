@@ -1,7 +1,7 @@
 package com.kenzie.appserver.controller;
 
 import com.kenzie.appserver.IntegrationTest;
-import com.kenzie.appserver.controller.model.ExampleCreateRequest;
+import com.kenzie.appserver.controller.model.CustomerCreateRequest;
 import com.kenzie.appserver.service.ExampleService;
 import com.kenzie.appserver.service.model.Example;
 
@@ -54,7 +54,7 @@ class ExampleControllerTest {
     public void createExample_CreateSuccessful() throws Exception {
         String name = mockNeat.strings().valStr();
 
-        ExampleCreateRequest exampleCreateRequest = new ExampleCreateRequest();
+        CustomerCreateRequest exampleCreateRequest = new CustomerCreateRequest();
         exampleCreateRequest.setName(name);
 
         mapper.registerModule(new JavaTimeModule());
