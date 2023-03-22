@@ -21,7 +21,7 @@ public class CustomerController {
     CustomerController(ExampleService exampleService) {
         this.exampleService = exampleService;
     }
-    
+
 //    TODO Service class need to be completed before to properly inplement this class----------------------------
 
 //    @GetMapping("/{UserId}")
