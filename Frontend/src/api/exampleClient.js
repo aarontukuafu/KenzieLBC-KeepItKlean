@@ -46,9 +46,13 @@ export default class ExampleClient extends BaseClass {
     }
 
     async createExample(name, errorCallback) {
+//      Added day, time, bins
         try {
             const response = await this.client.post(`example`, {
-                name: name
+                name: name,
+                day: day,
+                time: time,
+                bins: bins
             });
             return response.data;
         } catch (error) {
