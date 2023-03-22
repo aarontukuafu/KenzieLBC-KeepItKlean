@@ -11,9 +11,8 @@ import java.util.concurrent.TimeUnit;
 public class CacheConfig {
 
     // Create a Cache here if needed
-
-//    @Bean
-//    public CacheStore customerCache() {
-//        return new CacheStore(120, TimeUnit.SECONDS);
-//    }
+    @Bean
+    public CacheStore customerCache() {
+        return new CacheStore(120, TimeUnit.SECONDS);
+    }
 }
