@@ -4,6 +4,6 @@ public class PickupTime {
     enum Days {
         EIGHT_AM,
         NOON,
-        SIXTHIRTY_PM
+        SIX_PM
     }
 }
