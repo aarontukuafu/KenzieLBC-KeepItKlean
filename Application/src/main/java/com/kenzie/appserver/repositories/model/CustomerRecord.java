@@ -6,6 +6,8 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 import com.kenzie.appserver.service.model.DaysOfWeek;
 import com.kenzie.appserver.service.model.PickupTime;
 
+import java.util.Objects;
+
 @DynamoDBTable(tableName = "CustomerDatabase") public class CustomerRecord {
     private String userId;
     private DaysOfWeek daysOfWeek;
@@ -55,4 +57,16 @@ import com.kenzie.appserver.service.model.PickupTime;
         this.numOfBins = numOfBins;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof CustomerRecord)) return false;
+        CustomerRecord that = (CustomerRecord) o;
+        return numOfBins == that.numOfBins && userId.equals(that.userId) && daysOfWeek.equals(that.daysOfWeek) && pickupTime.equals(that.pickupTime);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(userId, daysOfWeek, pickupTime, numOfBins);
+    }
 }
