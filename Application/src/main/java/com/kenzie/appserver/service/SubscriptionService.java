@@ -1,6 +1,7 @@
 package com.kenzie.appserver.service;
 
-import com.kenzie.appserver.config.CacheConfig;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import com.kenzie.appserver.config.CacheStore;
 import com.kenzie.appserver.repositories.CustomerRecordRepository;
 import com.kenzie.appserver.repositories.model.CustomerRecord;
 import com.kenzie.appserver.service.model.Customer;
@@ -16,10 +17,14 @@ public class SubscriptionService {
     private CustomerRecordRepository customerRecordRepository;
     private CacheStore cache;
 
+    private final DynamoDBMapper dynamoDBMapper;
+
+
     @Autowired
-    public SubscriptionService(CustomerRecordRepository customerRecordRepository, CacheStore cache){
+    public SubscriptionService(CustomerRecordRepository customerRecordRepository, CacheStore cache, DynamoDBMapper dynamoDBMapper){
         this.customerRecordRepository = customerRecordRepository;
         this.cache = cache;
+        this.dynamoDBMapper = dynamoDBMapper;
     }
 
     public List<Customer> findAllCustomers() {
@@ -35,16 +40,13 @@ public class SubscriptionService {
         return customers;
     }
 
+
     public void addBin (Customer customer){
-        if (customerRecordRepository.existsById(customer.getUserId())) {
-            CustomerRecord customerRecord = new CustomerRecord();
-            customerRecord.setUserId(customer.getUserId());
-            customerRecord.setDaysOfWeek(customer.getDaysOfWeek());
-            customerRecord.setPickupTime(customer.getPickupTime());
-            customerRecord.setNumOfBins(customer.getNumOfBins());
-            customerRecordRepository.save(customerRecord);
-            cache.evict(customer.getUserId());
-        }
+        customer.setUserId(customer.getUserId());
+        customer.setDaysOfWeek(customer.getDaysOfWeek());
+        customer.setPickupTime(customer.getPickupTime());
+        customer.setNumOfBins(customer.getNumOfBins());
+        dynamoDBMapper.save(customer);
     }
 
     public void deleteBin (String binNumber){
