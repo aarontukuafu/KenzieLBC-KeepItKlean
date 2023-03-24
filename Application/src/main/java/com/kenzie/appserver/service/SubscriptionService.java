@@ -40,13 +40,30 @@ public class SubscriptionService {
         return customers;
     }
 
+    public Customer findCustomerById(String userId) {
+        Customer cachedCustomer = cache.get(userId);
+        if (cachedCustomer != null) {
+            return cachedCustomer;
+        }
+        Customer customer = customerRecordRepository
+                .findById(userId)
+                .map(customer1 -> new Customer(customer1.getUserId(), customer1.getDaysOfWeek(), customer1.getPickupTime(), customer1.getNumOfBins()))
+                .orElse(null);
+        if (customer != null) {
+            cache.add(customer.getUserId(), customer);
+        }
+        return customer;
+    }
+
 
     public void addBin (Customer customer){
-        customer.setUserId(customer.getUserId());
-        customer.setDaysOfWeek(customer.getDaysOfWeek());
-        customer.setPickupTime(customer.getPickupTime());
-        customer.setNumOfBins(customer.getNumOfBins());
-        dynamoDBMapper.save(customer);
+        if (customerRecordRepository.existsById(customer.getUserId())) {
+            customer.setUserId(customer.getUserId());
+            customer.setDaysOfWeek(customer.getDaysOfWeek());
+            customer.setPickupTime(customer.getPickupTime());
+            customer.setNumOfBins(customer.getNumOfBins());
+            dynamoDBMapper.save(customer);
+        }
     }
 
     public void deleteBin (String binNumber){
