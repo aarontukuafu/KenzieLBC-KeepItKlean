@@ -58,10 +58,11 @@ public class SubscriptionService {
 
     public void addBin (Customer customer){
         if (customerRecordRepository.existsById(customer.getUserId())) {
-            customer.setUserId(customer.getUserId());
-            customer.setDaysOfWeek(customer.getDaysOfWeek());
-            customer.setPickupTime(customer.getPickupTime());
-            customer.setNumOfBins(customer.getNumOfBins());
+            CustomerRecord customerRecord = new CustomerRecord();
+            customerRecord.setUserId(customer.getUserId());
+            customerRecord.setDaysOfWeek(customer.getDaysOfWeek());
+            customerRecord.setPickupTime(customer.getPickupTime());
+            customerRecord.setNumOfBins(customer.getNumOfBins());
             dynamoDBMapper.save(customer);
         }
     }
