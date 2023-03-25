@@ -4,6 +4,7 @@ import com.kenzie.appserver.controller.model.CustomerCreateRequest;
 import com.kenzie.appserver.controller.model.CustomerResponse;
 import com.kenzie.appserver.service.ExampleService;
 
+import com.kenzie.appserver.service.SubscriptionService;
 import com.kenzie.appserver.service.model.Example;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -37,17 +38,19 @@ public class CustomerController {
 //        exampleResponse.setName(example.getName());
 //        return ResponseEntity.ok(exampleResponse);
 //    }
-//
-//    @PostMapping
-//    public ResponseEntity<CustomerResponse> addNewConcert(@RequestBody CustomerCreateRequest exampleCreateRequest) {
-//        Example example = new Example(randomUUID().toString(),
-//                exampleCreateRequest.getName());
-//        exampleService.addNewExample(example);
-//
-//        CustomerResponse exampleResponse = new CustomerResponse();
-//        exampleResponse.setId(example.getId());
-//        exampleResponse.setName(example.getName());
-//
-//        return ResponseEntity.created(URI.create("/example/" + exampleResponse.getId())).body(exampleResponse);
-//    }
+
+    @PostMapping
+    public ResponseEntity<CustomerResponse> addNewConcert(@RequestBody CustomerCreateRequest exampleCreateRequest) {
+        Example example = new Example(randomUUID().toString(),
+                exampleCreateRequest.getName());
+        exampleService.addNewExample(example);
+
+        SubscriptionService
+
+        CustomerResponse exampleResponse = new CustomerResponse();
+        exampleResponse.setId(example.getId());
+        exampleResponse.setName(example.getName());
+
+        return ResponseEntity.created(URI.create("/example/" + exampleResponse.getId())).body(exampleResponse);
+    }
 }
