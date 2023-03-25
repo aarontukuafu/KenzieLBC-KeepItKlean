@@ -16,7 +16,7 @@ import java.util.Objects;
     private int numOfBins;
 
 
-    public CustomerRecord(String userId, DaysOfWeek daysOfWeek, PickupTime pickupTime, int numOfBins) {
+    public CustomerRecord(String userId,String name, DaysOfWeek daysOfWeek, PickupTime pickupTime, int numOfBins) {
         this.userId = userId;
         this.name = name;
         this.daysOfWeek = daysOfWeek;
