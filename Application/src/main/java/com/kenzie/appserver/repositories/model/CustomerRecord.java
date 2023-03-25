@@ -11,12 +11,12 @@ import java.util.Objects;
 @DynamoDBTable(tableName = "CustomerDatabase") public class CustomerRecord {
     private String userId;
     private String name;
-    private DaysOfWeek daysOfWeek;
-    private PickupTime pickupTime;
+    private String daysOfWeek;
+    private String pickupTime;
     private int numOfBins;
 
 
-    public CustomerRecord(String userId,String name, DaysOfWeek daysOfWeek, PickupTime pickupTime, int numOfBins) {
+    public CustomerRecord(String userId,String name,String daysOfWeek, String pickupTime, int numOfBins) {
         this.userId = userId;
         this.name = name;
         this.daysOfWeek = daysOfWeek;
@@ -38,7 +38,7 @@ import java.util.Objects;
         this.userId = userId;
     }
 
-    @DynamoDBHashKey(attributeName = "Name")
+    @DynamoDBAttribute(attributeName = "Name")
     public String getName() {
         return name;
     }
@@ -48,20 +48,20 @@ import java.util.Objects;
     }
 
     @DynamoDBAttribute(attributeName = "DaysOfWeek")
-    public DaysOfWeek getDaysOfWeek() {
+    public String getDaysOfWeek() {
         return daysOfWeek;
     }
 
-    public void setDaysOfWeek(DaysOfWeek daysOfWeek) {
+    public void setDaysOfWeek(String daysOfWeek) {
         this.daysOfWeek = daysOfWeek;
     }
 
     @DynamoDBAttribute(attributeName = "PickupTime")
-    public PickupTime getPickupTime() {
+    public String getPickupTime() {
         return pickupTime;
     }
 
-    public void setPickupTime(PickupTime pickupTime) {
+    public void setPickupTime(String pickupTime) {
         this.pickupTime = pickupTime;
     }
 

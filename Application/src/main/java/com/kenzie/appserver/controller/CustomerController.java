@@ -5,6 +5,7 @@ import com.kenzie.appserver.controller.model.CustomerResponse;
 import com.kenzie.appserver.service.ExampleService;
 
 import com.kenzie.appserver.service.SubscriptionService;
+import com.kenzie.appserver.service.model.Customer;
 import com.kenzie.appserver.service.model.Example;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,10 +18,10 @@ import static java.util.UUID.randomUUID;
 @RequestMapping("/example")
 public class CustomerController {
 
-    private ExampleService exampleService;
+    private SubscriptionService subscriptionService;
 
-    CustomerController(ExampleService exampleService) {
-        this.exampleService = exampleService;
+    CustomerController(SubscriptionService subscriptionService) {
+        this.subscriptionService = subscriptionService;
     }
 
 //    TODO Service class need to be completed before to properly inplement this class----------------------------
@@ -40,17 +41,25 @@ public class CustomerController {
 //    }
 
     @PostMapping
-    public ResponseEntity<CustomerResponse> addNewConcert(@RequestBody CustomerCreateRequest exampleCreateRequest) {
-        Example example = new Example(randomUUID().toString(),
-                exampleCreateRequest.getName());
-        exampleService.addNewExample(example);
+    public ResponseEntity<CustomerResponse> addNewConcert(@RequestBody CustomerCreateRequest customerCreateRequest) {
+//        Example example = new Example(randomUUID().toString(),
+//                customerCreateRequest.getName());
+//        exampleService.addNewExample(example);
 
-        SubscriptionService
+        Customer customer = new Customer(randomUUID().toString(),
+                customerCreateRequest.getName(),customerCreateRequest.getDaysOfWeek(),
+                customerCreateRequest.getPickupTime(),
+                customerCreateRequest.getNumOfBins());
+
+        subscriptionService.addNewCustomer(customer);
 
         CustomerResponse exampleResponse = new CustomerResponse();
-        exampleResponse.setId(example.getId());
-        exampleResponse.setName(example.getName());
+        exampleResponse.setUserId(customer.getUserId());
+        exampleResponse.setDaysOfWeek(customer.getDaysOfWeek());
+        exampleResponse.setPickupTime(customer.getPickupTime());
+        exampleResponse.setNumOfBins(customer.getNumOfBins());
+        exampleResponse.setName(customer.getName());
 
-        return ResponseEntity.created(URI.create("/example/" + exampleResponse.getId())).body(exampleResponse);
+        return ResponseEntity.created(URI.create("/example/" + exampleResponse.getUserId())).body(exampleResponse);
     }
 }
