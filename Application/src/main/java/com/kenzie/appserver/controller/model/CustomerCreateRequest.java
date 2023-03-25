@@ -12,6 +12,10 @@ public class CustomerCreateRequest {
     private String userId;
 
     @NotEmpty
+    @JsonProperty("name")
+    private String name;
+
+    @NotEmpty
     @JsonProperty("daysOfWeek")
     private String daysOfWeek;
 
@@ -29,6 +33,14 @@ public class CustomerCreateRequest {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDaysOfWeek() {

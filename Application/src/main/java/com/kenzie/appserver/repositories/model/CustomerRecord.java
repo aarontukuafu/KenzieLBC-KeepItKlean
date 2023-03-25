@@ -10,12 +10,15 @@ import java.util.Objects;
 
 @DynamoDBTable(tableName = "CustomerDatabase") public class CustomerRecord {
     private String userId;
+    private String name;
     private DaysOfWeek daysOfWeek;
     private PickupTime pickupTime;
     private int numOfBins;
 
+
     public CustomerRecord(String userId, DaysOfWeek daysOfWeek, PickupTime pickupTime, int numOfBins) {
         this.userId = userId;
+        this.name = name;
         this.daysOfWeek = daysOfWeek;
         this.pickupTime = pickupTime;
         this.numOfBins = numOfBins;
@@ -33,6 +36,15 @@ import java.util.Objects;
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    @DynamoDBHashKey(attributeName = "Name")
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @DynamoDBAttribute(attributeName = "DaysOfWeek")
