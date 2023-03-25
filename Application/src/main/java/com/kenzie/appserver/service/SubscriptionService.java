@@ -58,17 +58,30 @@ public class SubscriptionService {
 
     public void addBin (Customer customer){
         if (customerRecordRepository.existsById(customer.getUserId())) {
-            CustomerRecord customerRecord = new CustomerRecord();
-            customerRecord.setUserId(customer.getUserId());
-            customerRecord.setDaysOfWeek(customer.getDaysOfWeek());
-            customerRecord.setPickupTime(customer.getPickupTime());
-            customerRecord.setNumOfBins(customer.getNumOfBins());
-            dynamoDBMapper.save(customer);
+            if (customer.getNumOfBins() < 5) {
+                CustomerRecord customerRecord = new CustomerRecord();
+                customerRecord.setUserId(customer.getUserId());
+                customerRecord.setDaysOfWeek(customer.getDaysOfWeek());
+                customerRecord.setPickupTime(customer.getPickupTime());
+                customerRecord.setNumOfBins(customer.getNumOfBins());
+                dynamoDBMapper.save(customer);
+            } else throw new IllegalArgumentException();
+            System.out.println("Exceeds maximum number of trash bins allowed. Up to 5 trash bins allowed per customer.");
         }
     }
 
-    public void deleteBin (String binNumber){
-        customerRecordRepository.deleteById(binNumber);
-        cache.evict(binNumber);
+    public void deleteBin (Customer customer){
+        if (customerRecordRepository.existsById(customer.getUserId())){
+            if (customer.getNumOfBins() > 0 || customer.getNumOfBins() <= 5 ) {
+                CustomerRecord customerRecord = new CustomerRecord();
+                customerRecord.setUserId(customer.getUserId());
+                customerRecord.setDaysOfWeek(customer.getDaysOfWeek());
+                customerRecord.setPickupTime(customer.getPickupTime());
+                customerRecord.setNumOfBins(customer.getNumOfBins());
+                dynamoDBMapper.delete(customer.getNumOfBins());
+            } else throw new IllegalArgumentException();
+            System.out.println("Unable to delete trash bin. Customer cannot have zero bins, to remove all bins please" +
+                    "visit the cancel subscription option");
+        }
     }
 }
