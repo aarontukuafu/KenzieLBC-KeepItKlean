@@ -15,13 +15,19 @@ import java.util.Objects;
     private PickupTime pickupTime;
     private int numOfBins;
 
-    private  CustomerRecord(String userId, String name, DaysOfWeek daysOfWeek, PickupTime pickupTime, int numOfBins) {
+
+    public CustomerRecord(String userId, DaysOfWeek daysOfWeek, PickupTime pickupTime, int numOfBins) {
         this.userId = userId;
         this.name = name;
         this.daysOfWeek = daysOfWeek;
         this.pickupTime = pickupTime;
         this.numOfBins = numOfBins;
     }
+
+    public CustomerRecord() {
+
+    }
+    //created empty constructor
 
     @DynamoDBHashKey(attributeName = "UserId")
     public String getUserId() {

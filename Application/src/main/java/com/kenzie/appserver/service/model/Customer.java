@@ -10,7 +10,7 @@ public class Customer {
     private PickupTime pickupTime;
     private int numOfBins;
 
-    private  Customer(String userId, String name, DaysOfWeek daysOfWeek, PickupTime pickupTime, int numOfBins) {
+    public Customer(String userId, DaysOfWeek daysOfWeek, PickupTime pickupTime, int numOfBins) {
         this.userId = userId;
         this.name = name;
         this.daysOfWeek = daysOfWeek;
