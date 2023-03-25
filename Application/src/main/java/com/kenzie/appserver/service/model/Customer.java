@@ -6,11 +6,12 @@ public class Customer {
 
     private String userId;
     private String name;
-    private DaysOfWeek daysOfWeek;
-    private PickupTime pickupTime;
+    //can be change back to enum
+    private String daysOfWeek;
+    private String pickupTime;
     private int numOfBins;
 
-    public Customer(String userId, String name, DaysOfWeek daysOfWeek, PickupTime pickupTime, int numOfBins) {
+    public Customer(String userId, String name, String daysOfWeek, String pickupTime, int numOfBins) {
         this.userId = userId;
         this.name = name;
         this.daysOfWeek = daysOfWeek;
@@ -33,19 +34,19 @@ public class Customer {
         this.name = name;
     }
 
-    public DaysOfWeek getDaysOfWeek() {
+    public String getDaysOfWeek() {
         return daysOfWeek;
     }
 
-    public void setDaysOfWeek(DaysOfWeek daysOfWeek) {
+    public void setDaysOfWeek(String daysOfWeek) {
         this.daysOfWeek = daysOfWeek;
     }
 
-    public PickupTime getPickupTime() {
+    public String getPickupTime() {
         return pickupTime;
     }
 
-    public void setPickupTime(PickupTime pickupTime) {
+    public void setPickupTime(String pickupTime) {
         this.pickupTime = pickupTime;
     }
 

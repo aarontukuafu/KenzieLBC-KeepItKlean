@@ -13,6 +13,9 @@ public class CustomerResponse {
     private String userId;
 
     @NotEmpty
+    @JsonProperty("name")
+    private String name;
+    @NotEmpty
     @JsonProperty("daysOfWeek")
     private String daysOfWeek;
 
@@ -22,14 +25,18 @@ public class CustomerResponse {
 
     @NotEmpty
     @JsonProperty("numOfBins")
-    private String numOfBins;
 
-    public CustomerResponse(String userId, String daysOfWeek, String pickupTime, String numOfBins) {
+    //TODO add name
+    private int numOfBins;
+
+    public CustomerResponse(String userId, String daysOfWeek, String pickupTime, int numOfBins) {
         this.userId = userId;
         this.daysOfWeek = daysOfWeek;
         this.pickupTime = pickupTime;
         this.numOfBins = numOfBins;
     }
+
+    public CustomerResponse(){}
 
     public String getUserId() {
         return userId;
@@ -55,11 +62,19 @@ public class CustomerResponse {
         this.pickupTime = pickupTime;
     }
 
-    public String getNumOfBins() {
+    public int getNumOfBins() {
         return numOfBins;
     }
 
-    public void setNumOfBins(String numOfBins) {
+    public void setNumOfBins(int numOfBins) {
         this.numOfBins = numOfBins;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
