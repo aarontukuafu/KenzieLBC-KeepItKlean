@@ -4,7 +4,9 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.kenzie.appserver.config.CacheStore;
 import com.kenzie.appserver.repositories.CustomerRecordRepository;
 import com.kenzie.appserver.repositories.model.CustomerRecord;
+import com.kenzie.appserver.repositories.model.ExampleRecord;
 import com.kenzie.appserver.service.model.Customer;
+import com.kenzie.appserver.service.model.Example;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -86,5 +88,12 @@ public class SubscriptionService {
             System.out.println("Unable to delete trash bin. Customer cannot have zero bins, to remove all bins please" +
                     "visit the cancel subscription option");
         }
+    }
+    public Example addNewExample(Example example) {
+        CustomerRecord record = new CustomerRecord();
+        record.setId(example.getId());
+        record.setName(example.getName());
+        customerRecordRepository.save(record);
+        return example;
     }
 }
