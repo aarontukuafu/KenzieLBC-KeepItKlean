@@ -25,7 +25,7 @@ public class CustomerCreateRequest {
 
     @NotEmpty
     @JsonProperty("numOfBins")
-    private String numOfBins;
+    private int numOfBins;
 
 //    public String getUserId() {
 //        return userId;
@@ -59,11 +59,11 @@ public class CustomerCreateRequest {
         this.pickupTime = pickupTime;
     }
 
-    public String getNumOfBins() {
+    public int getNumOfBins() {
         return numOfBins;
     }
 
-    public void setNumOfBins(String numOfBins) {
+    public void setNumOfBins(int numOfBins) {
         this.numOfBins = numOfBins;
     }
 }
