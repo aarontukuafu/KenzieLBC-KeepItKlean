@@ -33,8 +33,9 @@ public class SubscriptionService {
         Iterable<CustomerRecord> iterator = customerRecordRepository.findAll();
         for (CustomerRecord record : iterator){
             customers.add(new Customer(record.getUserId(),
+                    record.getName(),
                     record.getDaysOfWeek(),
-                        record.getPickupTime(),
+                    record.getPickupTime(),
                     record.getNumOfBins()));
         }
         return customers;
@@ -47,7 +48,7 @@ public class SubscriptionService {
         }
         Customer customer = customerRecordRepository
                 .findById(userId)
-                .map(customer1 -> new Customer(customer1.getUserId(), customer1.getDaysOfWeek(), customer1.getPickupTime(), customer1.getNumOfBins()))
+                .map(customer1 -> new Customer(customer1.getUserId(), customer1.getName(),customer1.getDaysOfWeek(), customer1.getPickupTime(), customer1.getNumOfBins()))
                 .orElse(null);
         if (customer != null) {
             cache.add(customer.getUserId(), customer);
@@ -58,17 +59,32 @@ public class SubscriptionService {
 
     public void addBin (Customer customer){
         if (customerRecordRepository.existsById(customer.getUserId())) {
-            CustomerRecord customerRecord = new CustomerRecord();
-            customerRecord.setUserId(customer.getUserId());
-            customerRecord.setDaysOfWeek(customer.getDaysOfWeek());
-            customerRecord.setPickupTime(customer.getPickupTime());
-            customerRecord.setNumOfBins(customer.getNumOfBins());
-            dynamoDBMapper.save(customer);
+            if (customer.getNumOfBins() < 5) {
+                CustomerRecord customerRecord = new CustomerRecord();
+                customerRecord.setUserId(customer.getUserId());
+                customerRecord.setName(customer.getName());
+                customerRecord.setDaysOfWeek(customer.getDaysOfWeek());
+                customerRecord.setPickupTime(customer.getPickupTime());
+                customerRecord.setNumOfBins(customer.getNumOfBins());
+                dynamoDBMapper.save(customer);
+            } else throw new IllegalArgumentException();
+            System.out.println("Exceeds maximum number of trash bins allowed. Up to 5 trash bins allowed per customer.");
         }
     }
 
-    public void deleteBin (String binNumber){
-        customerRecordRepository.deleteById(binNumber);
-        cache.evict(binNumber);
+    public void deleteBin (Customer customer){
+        if (customerRecordRepository.existsById(customer.getUserId())){
+            if (customer.getNumOfBins() > 0 || customer.getNumOfBins() <= 5 ) {
+                CustomerRecord customerRecord = new CustomerRecord();
+                customerRecord.setUserId(customer.getUserId());
+                customerRecord.setUserId(customer.getUserId());
+                customerRecord.setDaysOfWeek(customer.getDaysOfWeek());
+                customerRecord.setPickupTime(customer.getPickupTime());
+                customerRecord.setNumOfBins(customer.getNumOfBins());
+                dynamoDBMapper.delete(customer.getNumOfBins());
+            } else throw new IllegalArgumentException();
+            System.out.println("Unable to delete trash bin. Customer cannot have zero bins, to remove all bins please" +
+                    "visit the cancel subscription option");
+        }
     }
 }
