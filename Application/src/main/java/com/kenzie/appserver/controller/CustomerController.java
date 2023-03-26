@@ -26,25 +26,22 @@ public class CustomerController {
 
 //    TODO Service class need to be completed before to properly inplement this class----------------------------
 
-//    @GetMapping("/{UserId}")
-//    public ResponseEntity<CustomerResponse> get(@PathVariable("UserId") String id) {
-//
-//        Example example = exampleService.findById(id);
-//        if (example == null) {
-//            return ResponseEntity.notFound().build();
-//        }
-//
-//        CustomerResponse exampleResponse = new CustomerResponse();
-//        exampleResponse.setId(example.getId());
-//        exampleResponse.setName(example.getName());
-//        return ResponseEntity.ok(exampleResponse);
-//    }
+    @GetMapping("/{userId}")
+    public ResponseEntity<CustomerResponse> get(@PathVariable("userId") String id){
+        Customer customer = subscriptionService.findCustomerById(id);
+
+        if (customer == null){
+            return ResponseEntity.notFound().build();
+        }
+
+        CustomerResponse response = new CustomerResponse();
+        response.setUserId(customer.getUserId());
+
+        return ResponseEntity.ok(response);
+    }
 
     @PostMapping
-    public ResponseEntity<CustomerResponse> addNewConcert(@RequestBody CustomerCreateRequest customerCreateRequest) {
-//        Example example = new Example(randomUUID().toString(),
-//                customerCreateRequest.getName());
-//        exampleService.addNewExample(example);
+    public ResponseEntity<CustomerResponse> addNewCustomer(@RequestBody CustomerCreateRequest customerCreateRequest) {
 
         Customer customer = new Customer(randomUUID().toString(),
                 customerCreateRequest.getName(),customerCreateRequest.getDaysOfWeek(),
