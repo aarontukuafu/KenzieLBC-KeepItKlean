@@ -18,7 +18,7 @@ class ExamplePage extends BaseClass {
      */
     async mount() {
         document.getElementById('get-by-id-form').addEventListener('submit', this.onGet);
-        document.getElementById('create-form').addEventListener('submit', this.onCreate);
+        document.getElementById('subscription-form').addEventListener('submit', this.onCreate);
         this.client = new ExampleClient();
 
         this.dataStore.addChangeListener(this.renderExample)
@@ -63,9 +63,9 @@ class ExamplePage extends BaseClass {
             event.preventDefault();
             this.dataStore.set("example", null);
 
-            let name = document.getElementById("create-name-field").value;
-            let day = document.getElementById("create-day-field").value;
-            let time = document.getElementById("create-time-field").value;
+            let name = document.getElementById("name-field").value;
+            let day = document.getElementById("day-field").value;
+            let time = document.getElementById("time-field").value;
             let bins = document.getElementById("create-bin-field").value;
 
             const createdExample = await this.client.createExample(name, day, time, bins, this.errorHandler);

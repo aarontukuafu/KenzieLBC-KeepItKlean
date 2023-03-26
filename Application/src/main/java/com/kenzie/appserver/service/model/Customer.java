@@ -5,12 +5,15 @@ import java.sql.Time;
 public class Customer {
 
     private String userId;
-    private DaysOfWeek daysOfWeek;
-    private PickupTime pickupTime;
+    private String name;
+    //can be change back to enum
+    private String daysOfWeek;
+    private String pickupTime;
     private int numOfBins;
 
-    private  Customer(String userId, DaysOfWeek daysOfWeek, PickupTime pickupTime, int numOfBins) {
+    public Customer(String userId, String name, String daysOfWeek, String pickupTime, int numOfBins) {
         this.userId = userId;
+        this.name = name;
         this.daysOfWeek = daysOfWeek;
         this.pickupTime = pickupTime;
         this.numOfBins = numOfBins;
@@ -23,20 +26,27 @@ public class Customer {
     public void setUserId(String userId) {
         this.userId = userId;
     }
+    public String getName() {
+        return name;
+    }
 
-    public DaysOfWeek getDaysOfWeek() {
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDaysOfWeek() {
         return daysOfWeek;
     }
 
-    public void setDaysOfWeek(DaysOfWeek daysOfWeek) {
+    public void setDaysOfWeek(String daysOfWeek) {
         this.daysOfWeek = daysOfWeek;
     }
 
-    public PickupTime getPickupTime() {
+    public String getPickupTime() {
         return pickupTime;
     }
 
-    public void setPickupTime(PickupTime pickupTime) {
+    public void setPickupTime(String pickupTime) {
         this.pickupTime = pickupTime;
     }
 

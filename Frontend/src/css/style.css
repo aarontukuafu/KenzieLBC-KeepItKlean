@@ -87,3 +87,13 @@
 .state.active {
     display: block;
 }
+/*adds a shadow to all the cards*/
+.card {
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+/*round the edges of the cards*/
+.card {
+  border-radius: 10px;
+}
+
+

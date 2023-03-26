@@ -10,16 +10,24 @@ import java.util.Objects;
 
 @DynamoDBTable(tableName = "CustomerDatabase") public class CustomerRecord {
     private String userId;
-    private DaysOfWeek daysOfWeek;
-    private PickupTime pickupTime;
+    private String name;
+    private String daysOfWeek;
+    private String pickupTime;
     private int numOfBins;
 
-    private  CustomerRecord(String userId, DaysOfWeek daysOfWeek, PickupTime pickupTime, int numOfBins) {
+
+    public CustomerRecord(String userId,String name,String daysOfWeek, String pickupTime, int numOfBins) {
         this.userId = userId;
+        this.name = name;
         this.daysOfWeek = daysOfWeek;
         this.pickupTime = pickupTime;
         this.numOfBins = numOfBins;
     }
+
+    public CustomerRecord() {
+
+    }
+    //created empty constructor
 
     @DynamoDBHashKey(attributeName = "UserId")
     public String getUserId() {
@@ -30,21 +38,30 @@ import java.util.Objects;
         this.userId = userId;
     }
 
+    @DynamoDBAttribute(attributeName = "Name")
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @DynamoDBAttribute(attributeName = "DaysOfWeek")
-    public DaysOfWeek getDaysOfWeek() {
+    public String getDaysOfWeek() {
         return daysOfWeek;
     }
 
-    public void setDaysOfWeek(DaysOfWeek daysOfWeek) {
+    public void setDaysOfWeek(String daysOfWeek) {
         this.daysOfWeek = daysOfWeek;
     }
 
     @DynamoDBAttribute(attributeName = "PickupTime")
-    public PickupTime getPickupTime() {
+    public String getPickupTime() {
         return pickupTime;
     }
 
-    public void setPickupTime(PickupTime pickupTime) {
+    public void setPickupTime(String pickupTime) {
         this.pickupTime = pickupTime;
     }
 

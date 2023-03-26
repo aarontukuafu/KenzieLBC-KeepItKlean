@@ -7,9 +7,13 @@ import javax.validation.constraints.NotEmpty;
 
 public class CustomerCreateRequest {
 
+//    @NotEmpty
+//    @JsonProperty("userId")
+//    private String userId;
+
     @NotEmpty
-    @JsonProperty("userId")
-    private String userId;
+    @JsonProperty("name")
+    private String name;
 
     @NotEmpty
     @JsonProperty("daysOfWeek")
@@ -21,14 +25,22 @@ public class CustomerCreateRequest {
 
     @NotEmpty
     @JsonProperty("numOfBins")
-    private String numOfBins;
+    private int numOfBins;
 
-    public String getUserId() {
-        return userId;
+//    public String getUserId() {
+//        return userId;
+//    }
+//
+//    public void setUserId(String userId) {
+//        this.userId = userId;
+//    }
+
+    public String getName() {
+        return name;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDaysOfWeek() {
@@ -47,11 +59,11 @@ public class CustomerCreateRequest {
         this.pickupTime = pickupTime;
     }
 
-    public String getNumOfBins() {
+    public int getNumOfBins() {
         return numOfBins;
     }
 
-    public void setNumOfBins(String numOfBins) {
+    public void setNumOfBins(int numOfBins) {
         this.numOfBins = numOfBins;
     }
 }
