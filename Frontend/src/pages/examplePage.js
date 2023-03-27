@@ -33,11 +33,14 @@ class ExamplePage extends BaseClass {
 
         if (example) {
             resultArea.innerHTML = `
-                <div>ID: ${example.id}</div>
                 <div>Name: ${example.name}</div>
+                <div>UserId: ${example.userId}</div>
+                <div>Days: ${example.daysOfWeek}</div>
+                <div>Pickup: ${example.pickupTime}</div>
+                <div>Bins: ${example.numOfBins}</div>
             `
         } else {
-            resultArea.innerHTML = "No Item";
+        resultArea.innerHTML = "No Item";
         }
     }
 
