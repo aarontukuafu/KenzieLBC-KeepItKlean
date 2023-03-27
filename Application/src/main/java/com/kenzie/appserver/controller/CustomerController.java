@@ -59,4 +59,21 @@ public class CustomerController {
 
         return ResponseEntity.created(URI.create("/example/" + exampleResponse.getUserId())).body(exampleResponse);
     }
+
+
+    @PutMapping
+    public ResponseEntity<CustomerResponse> updateBins(@RequestBody CustomerCreateRequest customerCreateRequest) {
+
+        Customer customer = new Customer(randomUUID().toString(),
+                customerCreateRequest.getName(),customerCreateRequest.getDaysOfWeek(),
+                customerCreateRequest.getPickupTime(),
+                customerCreateRequest.getNumOfBins());
+
+        subscriptionService.updateBins(customer);
+
+        CustomerResponse response = new CustomerResponse(customer);
+
+
+        return ResponseEntity.ok(response);
+    }
 }
