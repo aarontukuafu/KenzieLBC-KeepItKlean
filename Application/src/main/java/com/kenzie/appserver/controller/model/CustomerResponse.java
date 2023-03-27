@@ -26,7 +26,6 @@ public class CustomerResponse {
     @NotEmpty
     @JsonProperty("numOfBins")
 
-    //TODO add name
     private int numOfBins;
 
     public CustomerResponse(String userId, String daysOfWeek, String pickupTime, int numOfBins) {
