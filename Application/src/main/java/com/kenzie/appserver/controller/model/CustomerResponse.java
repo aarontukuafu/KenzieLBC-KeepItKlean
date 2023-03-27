@@ -2,6 +2,7 @@ package com.kenzie.appserver.controller.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.kenzie.appserver.service.model.Customer;
 
 import javax.validation.constraints.NotEmpty;
 
@@ -36,6 +37,9 @@ public class CustomerResponse {
     }
 
     public CustomerResponse(){}
+
+    public CustomerResponse(Customer customer) {
+    }
 
     public String getUserId() {
         return userId;

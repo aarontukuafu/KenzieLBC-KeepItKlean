@@ -62,7 +62,7 @@ public class SubscriptionService {
     }
 
 
-    public void addBin (Customer customer){
+    public void updateBins (Customer customer){
         if (customerRecordRepository.existsById(customer.getUserId())) {
             if (customer.getNumOfBins() < 5) {
                 CustomerRecord customerRecord = new CustomerRecord();
@@ -71,7 +71,9 @@ public class SubscriptionService {
                 customerRecord.setDaysOfWeek(customer.getDaysOfWeek());
                 customerRecord.setPickupTime(customer.getPickupTime());
                 customerRecord.setNumOfBins(customer.getNumOfBins());
-                dynamoDBMapper.save(customer);
+                customerRecordRepository.save(customerRecord);
+                cache.evict(customer.getUserId());
+                //dynamoDBMapper.save(customer);
             } else throw new IllegalArgumentException();
             System.out.println("Exceeds maximum number of trash bins allowed. Up to 5 trash bins allowed per customer.");
         }
@@ -92,6 +94,7 @@ public class SubscriptionService {
                     "visit the cancel subscription option");
         }
     }
+
     public Customer addNewCustomer(Customer customer) {
         CustomerRecord record = new CustomerRecord();
         record.setUserId(customer.getUserId());
@@ -102,4 +105,7 @@ public class SubscriptionService {
         customerRecordRepository.save(record);
         return customer;
     }
+
+
+
 }
