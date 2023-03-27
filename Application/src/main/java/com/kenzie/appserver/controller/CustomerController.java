@@ -76,4 +76,14 @@ public class CustomerController {
 
         return ResponseEntity.ok(response);
     }
+
+    @DeleteMapping("/{userId}/cancel")
+    public ResponseEntity<CustomerResponse> cancelSubscription(@PathVariable("userId") String id){
+        Customer customer = subscriptionService.findCustomerById(id);
+        if (customer == null){
+            return ResponseEntity.notFound().build();
+        }
+        subscriptionService.cancelService(customer);
+        return (ResponseEntity<CustomerResponse>) ResponseEntity.ok();
+    }
 }

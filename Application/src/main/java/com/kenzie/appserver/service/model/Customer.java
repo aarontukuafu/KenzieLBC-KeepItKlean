@@ -11,12 +11,15 @@ public class Customer {
     private String pickupTime;
     private int numOfBins;
 
+    private boolean isCancelled;
+
     public Customer(String userId, String name, String daysOfWeek, String pickupTime, int numOfBins) {
         this.userId = userId;
         this.name = name;
         this.daysOfWeek = daysOfWeek;
         this.pickupTime = pickupTime;
         this.numOfBins = numOfBins;
+        this.isCancelled = false;
     }
 
     public String getUserId() {
@@ -57,5 +60,9 @@ public class Customer {
     public void setNumOfBins(int numOfBins) {
         this.numOfBins = numOfBins;
     }
+
+    public boolean isCancelled(){ return isCancelled;}
+
+    public void setCancelled(boolean cancelled){ isCancelled = cancelled;}
 
 }
