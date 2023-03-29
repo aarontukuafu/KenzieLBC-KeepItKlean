@@ -24,8 +24,6 @@ public class CustomerController {
         this.subscriptionService = subscriptionService;
     }
 
-//    TODO Service class need to be completed before to properly inplement this class----------------------------
-
     @GetMapping("/{userId}")
     public ResponseEntity<CustomerResponse> get(@PathVariable("userId") String id){
         Customer customer = subscriptionService.findCustomerById(id);
@@ -62,17 +60,17 @@ public class CustomerController {
 
 
     @PutMapping
-    public ResponseEntity<CustomerResponse> updateBins(@RequestBody CustomerCreateRequest customerCreateRequest) {
+    public ResponseEntity<CustomerResponse> updateCustomer(@RequestBody CustomerCreateRequest customerCreateRequest) {
 
-        Customer customer = new Customer(randomUUID().toString(),
-                customerCreateRequest.getName(),customerCreateRequest.getDaysOfWeek(),
+        Customer customer = new Customer(customerCreateRequest.getUserId(),
+                customerCreateRequest.getName(),
+                customerCreateRequest.getDaysOfWeek(),
                 customerCreateRequest.getPickupTime(),
                 customerCreateRequest.getNumOfBins());
 
-        subscriptionService.updateBins(customer);
+        subscriptionService.updateCustomer(customer);
 
         CustomerResponse response = new CustomerResponse(customer);
-
 
         return ResponseEntity.ok(response);
     }

@@ -60,7 +60,7 @@ public class SubscriptionService {
     }
 
 
-    public void updateBins (Customer customer){
+    public void updateCustomer(Customer customer){
         if (customerRecordRepository.existsById(customer.getUserId())) {
             if (customer.getNumOfBins() < 5) {
                 CustomerRecord customerRecord = new CustomerRecord();
@@ -71,9 +71,7 @@ public class SubscriptionService {
                 customerRecord.setNumOfBins(customer.getNumOfBins());
                 customerRecordRepository.save(customerRecord);
                 cache.evict(customer.getUserId());
-                //dynamoDBMapper.save(customer);
-            } else throw new IllegalArgumentException();
-            System.out.println("Exceeds maximum number of trash bins allowed. Up to 5 trash bins allowed per customer.");
+            } else throw new InvalidCustomerInputException("Please review information entered and submit again.");
         }
     }
 
