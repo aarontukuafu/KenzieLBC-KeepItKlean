@@ -7,9 +7,9 @@ import javax.validation.constraints.NotEmpty;
 
 public class CustomerCreateRequest {
 
-//    @NotEmpty
-//    @JsonProperty("userId")
-//    private String userId;
+    @NotEmpty
+    @JsonProperty("userId")
+    private String userId;
 
     @NotEmpty
     @JsonProperty("name")
@@ -27,13 +27,13 @@ public class CustomerCreateRequest {
     @JsonProperty("numOfBins")
     private int numOfBins;
 
-//    public String getUserId() {
-//        return userId;
-//    }
-//
-//    public void setUserId(String userId) {
-//        this.userId = userId;
-//    }
+    public String getUserId() {
+        return userId;
+   }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
     public String getName() {
         return name;
