@@ -12,6 +12,7 @@ import java.util.Objects;
     private String userId;
     private String name;
     private String daysOfWeek;
+    private String secondDayOfWeek = null;
     private String pickupTime;
     private int numOfBins;
 
@@ -20,6 +21,15 @@ import java.util.Objects;
         this.userId = userId;
         this.name = name;
         this.daysOfWeek = daysOfWeek;
+        this.pickupTime = pickupTime;
+        this.numOfBins = numOfBins;
+    }
+
+    public CustomerRecord(String userId, String name, String daysOfWeek, String secondDayOfWeek, String pickupTime, int numOfBins) {
+        this.userId = userId;
+        this.name = name;
+        this.daysOfWeek = daysOfWeek;
+        this.secondDayOfWeek = null;
         this.pickupTime = pickupTime;
         this.numOfBins = numOfBins;
     }
