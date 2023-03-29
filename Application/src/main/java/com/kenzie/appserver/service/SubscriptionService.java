@@ -4,9 +4,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.kenzie.appserver.config.CacheStore;
 import com.kenzie.appserver.repositories.CustomerRecordRepository;
 import com.kenzie.appserver.repositories.model.CustomerRecord;
-import com.kenzie.appserver.repositories.model.ExampleRecord;
 import com.kenzie.appserver.service.model.Customer;
-import com.kenzie.appserver.service.model.Example;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -104,5 +102,16 @@ public class SubscriptionService {
         record.setNumOfBins(customer.getNumOfBins());
         customerRecordRepository.save(record);
         return customer;
+    }
+
+    public void cancelService(Customer customer){
+        if(customerRecordRepository.existsById(customer.getUserId())){
+            customerRecordRepository.deleteById(customer.getUserId());
+            cache.evict(customer.getUserId());
+            dynamoDBMapper.delete(customer);
+            //customer.setCancelled(true);
+        }else{
+            throw new IllegalArgumentException("Customer does not exist.");
+        }
     }
 }
