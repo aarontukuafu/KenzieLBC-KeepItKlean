@@ -8,8 +8,7 @@ import com.kenzie.appserver.service.model.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class SubscriptionService {
@@ -113,5 +112,14 @@ public class SubscriptionService {
         }else{
             throw new IllegalArgumentException("Customer does not exist.");
         }
+    }
+
+    public Map<String, String> addReview(Customer name){
+        Map<String, String> customerReview = new HashMap<>();
+        Scanner scanner = new Scanner(System.in);
+        String review = scanner.nextLine();
+        customerReview.put(name.getName(), review);
+
+        return customerReview;
     }
 }
