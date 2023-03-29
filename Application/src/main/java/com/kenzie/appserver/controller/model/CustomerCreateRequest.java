@@ -20,12 +20,20 @@ public class CustomerCreateRequest {
     private String daysOfWeek;
 
     @NotEmpty
+    @JsonProperty("secondDayOfWeek")
+    private String secondDayOfWeek;
+
+    @NotEmpty
     @JsonProperty("pickupTime")
     private String pickupTime;
 
     @NotEmpty
     @JsonProperty("numOfBins")
     private int numOfBins;
+
+    @NotEmpty
+    @JsonProperty("isCancelled")
+    private boolean isCancelled;
 
     public String getUserId() {
         return userId;
@@ -65,5 +73,23 @@ public class CustomerCreateRequest {
 
     public void setNumOfBins(int numOfBins) {
         this.numOfBins = numOfBins;
+    }
+
+    public String getSecondDayOfWeek() {
+        return secondDayOfWeek;
+    }
+
+    public boolean getIsCancelled() {
+        return isCancelled;
+    }
+
+    public void setIsCancelled(boolean isCancelled) {
+        this.isCancelled = isCancelled;
+    }
+
+    public void setSecondDayOfWeek(String secondDayOfWeek) {
+        this.secondDayOfWeek = secondDayOfWeek;
+
+
     }
 }
