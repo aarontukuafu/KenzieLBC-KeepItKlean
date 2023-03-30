@@ -12,14 +12,26 @@ import java.util.Objects;
     private String userId;
     private String name;
     private String daysOfWeek;
+    private String secondDayOfWeek = null;
     private String pickupTime;
     private int numOfBins;
+
+    private boolean isCancelled;
 
 
     public CustomerRecord(String userId,String name,String daysOfWeek, String pickupTime, int numOfBins) {
         this.userId = userId;
         this.name = name;
         this.daysOfWeek = daysOfWeek;
+        this.pickupTime = pickupTime;
+        this.numOfBins = numOfBins;
+    }
+
+    public CustomerRecord(String userId, String name, String daysOfWeek, String secondDayOfWeek, String pickupTime, int numOfBins) {
+        this.userId = userId;
+        this.name = name;
+        this.daysOfWeek = daysOfWeek;
+        this.secondDayOfWeek = null;
         this.pickupTime = pickupTime;
         this.numOfBins = numOfBins;
     }
@@ -72,6 +84,22 @@ import java.util.Objects;
 
     public void setNumOfBins(int numOfBins) {
         this.numOfBins = numOfBins;
+    }
+
+    public String getSecondDayOfWeek() {
+        return secondDayOfWeek;
+    }
+
+    public void setSecondDayOfWeek(String secondDayOfWeek) {
+        this.secondDayOfWeek = secondDayOfWeek;
+    }
+
+    public boolean isCancelled() {
+        return isCancelled;
+    }
+
+    public void setCancelled(boolean cancelled) {
+        isCancelled = cancelled;
     }
 
     @Override

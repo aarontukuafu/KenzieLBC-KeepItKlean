@@ -7,9 +7,9 @@ import javax.validation.constraints.NotEmpty;
 
 public class CustomerCreateRequest {
 
-//    @NotEmpty
-//    @JsonProperty("userId")
-//    private String userId;
+    @NotEmpty
+    @JsonProperty("userId")
+    private String userId;
 
     @NotEmpty
     @JsonProperty("name")
@@ -20,6 +20,10 @@ public class CustomerCreateRequest {
     private String daysOfWeek;
 
     @NotEmpty
+    @JsonProperty("secondDayOfWeek")
+    private String secondDayOfWeek;
+
+    @NotEmpty
     @JsonProperty("pickupTime")
     private String pickupTime;
 
@@ -27,13 +31,17 @@ public class CustomerCreateRequest {
     @JsonProperty("numOfBins")
     private int numOfBins;
 
-//    public String getUserId() {
-//        return userId;
-//    }
-//
-//    public void setUserId(String userId) {
-//        this.userId = userId;
-//    }
+    @NotEmpty
+    @JsonProperty("isCancelled")
+    private boolean isCancelled;
+
+    public String getUserId() {
+        return userId;
+   }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
     public String getName() {
         return name;
@@ -65,5 +73,23 @@ public class CustomerCreateRequest {
 
     public void setNumOfBins(int numOfBins) {
         this.numOfBins = numOfBins;
+    }
+
+    public String getSecondDayOfWeek() {
+        return secondDayOfWeek;
+    }
+
+    public boolean getIsCancelled() {
+        return isCancelled;
+    }
+
+    public void setIsCancelled(boolean isCancelled) {
+        this.isCancelled = isCancelled;
+    }
+
+    public void setSecondDayOfWeek(String secondDayOfWeek) {
+        this.secondDayOfWeek = secondDayOfWeek;
+
+
     }
 }
