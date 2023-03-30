@@ -8,8 +8,7 @@ import com.kenzie.appserver.service.model.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class SubscriptionService {
@@ -60,20 +59,20 @@ public class SubscriptionService {
     }
 
 
-    public void updateBins (Customer customer){
+    public void updateCustomer(Customer customer){
         if (customerRecordRepository.existsById(customer.getUserId())) {
             if (customer.getNumOfBins() < 5) {
                 CustomerRecord customerRecord = new CustomerRecord();
                 customerRecord.setUserId(customer.getUserId());
                 customerRecord.setName(customer.getName());
                 customerRecord.setDaysOfWeek(customer.getDaysOfWeek());
+                customerRecord.setSecondDayOfWeek(customer.getSecondDayOfWeek());
                 customerRecord.setPickupTime(customer.getPickupTime());
                 customerRecord.setNumOfBins(customer.getNumOfBins());
+                customerRecord.setCancelled(customer.isCancelled());
                 customerRecordRepository.save(customerRecord);
                 cache.evict(customer.getUserId());
-                //dynamoDBMapper.save(customer);
-            } else throw new IllegalArgumentException();
-            System.out.println("Exceeds maximum number of trash bins allowed. Up to 5 trash bins allowed per customer.");
+            } else throw new InvalidCustomerInputException("Please review information entered and submit again.");
         }
     }
 
@@ -113,5 +112,14 @@ public class SubscriptionService {
         }else{
             throw new IllegalArgumentException("Customer does not exist.");
         }
+    }
+
+    public Map<String, String> addReview(Customer name){
+        Map<String, String> customerReview = new HashMap<>();
+        Scanner scanner = new Scanner(System.in);
+        String review = scanner.nextLine();
+        customerReview.put(name.getName(), review);
+
+        return customerReview;
     }
 }
