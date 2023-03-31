@@ -79,22 +79,26 @@ class ExamplePage extends BaseClass {
             } else {
                 this.errorHandler("Error creating!  Try again...");
             }
+            
+    }
 
-    //commented out just in case edits are incorrect
-/*        // Prevent the page from refreshing on form submit
+    async subscriptionUpdate(event) {
         event.preventDefault();
         this.dataStore.set("example", null);
-
-        let name = document.getElementById("create-name-field").value;
-
-        const createdExample = await this.client.createExample(name, this.errorHandler);
+ 
+        let name = document.getElementById("update-name-field").value;
+        let day = document.getElementById("update-day-field").value;
+        let time = document.getElementById("update-time-field").value;
+        let bins = document.getElementById("update-bin-field").value;
+ 
+        const createdExample = await this.client.createExample(name, day, time, bins, this.errorHandler);
         this.dataStore.set("example", createdExample);
-
+ 
         if (createdExample) {
-            this.showMessage(`Created ${createdExample.name}!`)
-        } else {
+        this.showMessage(`Created ${createdExample.name}!`)
+            } else {
             this.errorHandler("Error creating!  Try again...");
-        }*/
+            }
     }
 }
 

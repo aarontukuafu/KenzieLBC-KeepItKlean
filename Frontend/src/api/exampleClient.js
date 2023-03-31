@@ -74,4 +74,24 @@ export default class ExampleClient extends BaseClass {
             errorCallback(method + " failed - " + error);
         }
     }
+// should create a new post
+    async updateSubscription(name,day,time,bins,errorCallback) {
+        //      Added day, time, bins
+                try {
+                    const response = await this.client.post(`example`, {
+                        name: name,
+                        daysOfWeek: day,
+                        pickupTime: time,
+                        numOfBins: bins
+                    });
+                    return response.data;
+                } catch (error) {
+                    this.handleError("createExample", error, errorCallback);
+                }
+            }
 }
+
+
+
+
+
