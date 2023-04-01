@@ -6,7 +6,7 @@ import com.kenzie.appserver.service.model.Customer;
 
 import javax.validation.constraints.NotEmpty;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonInclude//(JsonInclude.Include.NON_NULL)
 public class CustomerResponse {
 
     @NotEmpty
