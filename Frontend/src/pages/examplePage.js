@@ -36,6 +36,7 @@ class ExamplePage extends BaseClass {
                 <div>Name: ${example.name}</div>
                 <div>UserId: ${example.userId}</div>
                 <div>Days: ${example.daysOfWeek}</div>
+                <div>Days: ${example.secondDayOfWeek}</div>
                 <div>Pickup: ${example.pickupTime}</div>
                 <div>Bins: ${example.numOfBins}</div>
             `
@@ -68,10 +69,11 @@ class ExamplePage extends BaseClass {
 
             let name = document.getElementById("name-field").value;
             let day = document.getElementById("day-field").value;
+            let secondDay = document.getElementById("second-day-field").value;
             let time = document.getElementById("time-field").value;
             let bins = document.getElementById("create-bin-field").value;
 
-            const createdExample = await this.client.createExample(name, day, time, bins, this.errorHandler);
+            const createdExample = await this.client.createExample(name, day, secondDay, time, bins, this.errorHandler);
             this.dataStore.set("example", createdExample);
 
             if (createdExample) {

@@ -21,6 +21,10 @@ public class CustomerResponse {
     private String daysOfWeek;
 
     @NotEmpty
+    @JsonProperty("secondDayOfWeek")
+    private String secondDayOfWeek;
+
+    @NotEmpty
     @JsonProperty("pickupTime")
     private String pickupTime;
 
@@ -39,6 +43,15 @@ public class CustomerResponse {
     public CustomerResponse(){}
 
     public CustomerResponse(Customer customer) {
+    }
+
+    public CustomerResponse(String userId, String name, String daysOfWeek, String secondDayOfWeek, String pickupTime, int numOfBins) {
+        this.userId = userId;
+        this.name = name;
+        this.daysOfWeek = daysOfWeek;
+        this.secondDayOfWeek = secondDayOfWeek;
+        this.pickupTime = pickupTime;
+        this.numOfBins = numOfBins;
     }
 
     public String getUserId() {
@@ -79,5 +92,13 @@ public class CustomerResponse {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getSecondDayOfWeek() {
+        return secondDayOfWeek;
+    }
+
+    public void setSecondDayOfWeek(String secondDayOfWeek) {
+        this.secondDayOfWeek = secondDayOfWeek;
     }
 }

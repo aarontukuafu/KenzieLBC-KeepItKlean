@@ -42,7 +42,9 @@ public class CustomerController {
     public ResponseEntity<CustomerResponse> addNewCustomer(@RequestBody CustomerCreateRequest customerCreateRequest) {
 
         Customer customer = new Customer(randomUUID().toString(),
-                customerCreateRequest.getName(),customerCreateRequest.getDaysOfWeek(),
+                customerCreateRequest.getName(),
+                customerCreateRequest.getDaysOfWeek(),
+                customerCreateRequest.getSecondDayOfWeek(), //added second day of week
                 customerCreateRequest.getPickupTime(),
                 customerCreateRequest.getNumOfBins());
 
@@ -51,6 +53,7 @@ public class CustomerController {
         CustomerResponse exampleResponse = new CustomerResponse();
         exampleResponse.setUserId(customer.getUserId());
         exampleResponse.setDaysOfWeek(customer.getDaysOfWeek());
+        exampleResponse.setSecondDayOfWeek(customer.getSecondDayOfWeek()); // added second day of week
         exampleResponse.setPickupTime(customer.getPickupTime());
         exampleResponse.setNumOfBins(customer.getNumOfBins());
         exampleResponse.setName(customer.getName());
