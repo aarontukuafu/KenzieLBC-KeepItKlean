@@ -36,7 +36,7 @@ class ExamplePage extends BaseClass {
                 <div>Name: ${example.name}</div>
                 <div>UserId: ${example.userId}</div>
                 <div>Days: ${example.daysOfWeek}</div>
-                <div>Days: ${example.secondDayOfWeek}</div>
+                <div>SecondDay: ${example.secondDayOfWeek}</div>
                 <div>Pickup: ${example.pickupTime}</div>
                 <div>Bins: ${example.numOfBins}</div>
             `
