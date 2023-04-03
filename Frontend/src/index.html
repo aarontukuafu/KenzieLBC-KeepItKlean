@@ -13,7 +13,7 @@
 </header>
 <div class="card">
     <div class="card-header">
-        <h2>Subscription Details</h2>
+        <h2> Create New Subscription</h2>
     </div>
     <div class="card-body">
         <form id="subscription-form">
@@ -34,11 +34,24 @@
                 </select>
             </div>
             <div class="form-group">
+                <label for="second-day-field">Second Day of the Week:</label>
+                <select class="form-control" id="second-day-field">
+                    <option value="None">None</option>
+                    <option value="Sunday">Sunday</option>
+                    <option value="Monday">Monday</option>
+                    <option value="Tuesday">Tuesday</option>
+                    <option value="Wednesday">Wednesday</option>
+                    <option value="Thursday">Thursday</option>
+                    <option value="Friday">Friday</option>
+                    <option value="Saturday">Saturday</option>
+                </select>
+            </div>
+            <div class="form-group">
                 <label for="time-field">Time of the Day:</label>
                 <select class="form-control" id="time-field">
-                    <option value="EIGHT_AM">EIGHT_AM</option>
-                    <option value="NOON">NOON</option>
-                    <option value="SIX_PM">SIX_PM</option>
+                    <option value="8:00AM">8:00AM</option>
+                    <option value="12:00PM">12:00PM</option>
+                    <option value="6:00PM">6:00PM</option>
                 </select>
             </div>
             <div class="mb-3">
@@ -52,7 +65,7 @@
 
 <div class="card">
     <div class="card-header">
-        <h2>Update Subscription</h2>
+        <h2>Update Existing Subscription</h2>
     </div>
     <div class="card-body">
         <form id="update-subscription-form">

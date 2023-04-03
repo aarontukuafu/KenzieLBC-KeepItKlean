@@ -19,7 +19,7 @@ public class CustomerCreateRequest {
     @JsonProperty("daysOfWeek")
     private String daysOfWeek;
 
-    @NotEmpty
+    //@NotEmpty
     @JsonProperty("secondDayOfWeek")
     private String secondDayOfWeek;
 
