@@ -69,7 +69,7 @@ public class SubscriptionService {
                 customerRecord.setSecondDayOfWeek(customer.getSecondDayOfWeek());
                 customerRecord.setPickupTime(customer.getPickupTime());
                 customerRecord.setNumOfBins(customer.getNumOfBins());
-                customerRecord.setCancelled(customer.isCancelled());
+                //customerRecord.setCancelled(customer.isCancelled());
                 customerRecordRepository.save(customerRecord);
                 cache.evict(customer.getUserId());
            // } else throw new InvalidCustomerInputException("Please review information entered and submit again.");
