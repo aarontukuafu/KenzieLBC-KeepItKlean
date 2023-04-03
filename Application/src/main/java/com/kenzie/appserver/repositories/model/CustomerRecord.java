@@ -15,7 +15,7 @@ import java.util.Objects;
     private String secondDayOfWeek = null;
     private String pickupTime;
     private int numOfBins;
-    private boolean isCancelled;
+    //private boolean isCancelled;
 
 
     public CustomerRecord(String userId,String name,String daysOfWeek, String pickupTime, int numOfBins) {
@@ -96,25 +96,25 @@ import java.util.Objects;
         this.numOfBins = numOfBins;
     }
 
-    @DynamoDBAttribute(attributeName = "IsCancelled")
+    /*@DynamoDBAttribute(attributeName = "IsCancelled")
     public boolean isCancelled() {
         return isCancelled;
     }
 
     public void setCancelled(boolean cancelled) {
         isCancelled = cancelled;
-    }
+    }*/
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CustomerRecord that = (CustomerRecord) o;
-        return numOfBins == that.numOfBins && isCancelled == that.isCancelled && Objects.equals(userId, that.userId) && Objects.equals(name, that.name) && Objects.equals(daysOfWeek, that.daysOfWeek) && Objects.equals(secondDayOfWeek, that.secondDayOfWeek) && Objects.equals(pickupTime, that.pickupTime);
+        return numOfBins == that.numOfBins && Objects.equals(userId, that.userId) && Objects.equals(name, that.name) && Objects.equals(daysOfWeek, that.daysOfWeek) && Objects.equals(secondDayOfWeek, that.secondDayOfWeek) && Objects.equals(pickupTime, that.pickupTime);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId, name, daysOfWeek, secondDayOfWeek, pickupTime, numOfBins, isCancelled);
+        return Objects.hash(userId, name, daysOfWeek, secondDayOfWeek, pickupTime, numOfBins);
     }
 }
