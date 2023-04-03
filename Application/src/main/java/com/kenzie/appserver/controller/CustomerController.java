@@ -2,6 +2,7 @@ package com.kenzie.appserver.controller;
 
 import com.kenzie.appserver.controller.model.CustomerCreateRequest;
 import com.kenzie.appserver.controller.model.CustomerResponse;
+import com.kenzie.appserver.controller.model.CustomerUpdateRequest;
 import com.kenzie.appserver.service.ExampleService;
 
 import com.kenzie.appserver.service.SubscriptionService;
@@ -44,7 +45,7 @@ public class CustomerController {
         Customer customer = new Customer(randomUUID().toString(),
                 customerCreateRequest.getName(),
                 customerCreateRequest.getDaysOfWeek(),
-                customerCreateRequest.getSecondDayOfWeek(), //added second day of week
+                customerCreateRequest.getSecondDayOfWeek(),
                 customerCreateRequest.getPickupTime(),
                 customerCreateRequest.getNumOfBins());
 
@@ -53,7 +54,7 @@ public class CustomerController {
         CustomerResponse exampleResponse = new CustomerResponse();
         exampleResponse.setUserId(customer.getUserId());
         exampleResponse.setDaysOfWeek(customer.getDaysOfWeek());
-        exampleResponse.setSecondDayOfWeek(customer.getSecondDayOfWeek()); // added second day of week
+        exampleResponse.setSecondDayOfWeek(customer.getSecondDayOfWeek());
         exampleResponse.setPickupTime(customer.getPickupTime());
         exampleResponse.setNumOfBins(customer.getNumOfBins());
         exampleResponse.setName(customer.getName());
@@ -63,15 +64,15 @@ public class CustomerController {
 
 
     @PutMapping
-    public ResponseEntity<CustomerResponse> updateCustomer(@RequestBody CustomerCreateRequest customerCreateRequest) {
+    public ResponseEntity<CustomerResponse> updateCustomer(@RequestBody CustomerUpdateRequest customerUpdateRequest) {
 
-        Customer customer = new Customer(customerCreateRequest.getUserId(),
-                customerCreateRequest.getName(),
-                customerCreateRequest.getDaysOfWeek(),
-                customerCreateRequest.getPickupTime(),
-                customerCreateRequest.getSecondDayOfWeek(),
-                customerCreateRequest.getNumOfBins(),
-                customerCreateRequest.getIsCancelled());
+        Customer customer = new Customer(customerUpdateRequest.getUserId(),
+                customerUpdateRequest.getName(),
+                customerUpdateRequest.getDaysOfWeek(),
+                customerUpdateRequest.getPickupTime(),
+                customerUpdateRequest.getSecondDayOfWeek(),
+                customerUpdateRequest.getNumOfBins());
+                //customerUpdateRequest.getCancelled());
 
         subscriptionService.updateCustomer(customer);
 
