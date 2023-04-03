@@ -8,16 +8,16 @@ import javax.validation.constraints.NotEmpty;
 public class ReviewCreateRequest {
     @NotEmpty
     @JsonProperty("name")
-    private Customer name;
+    private String name;
     @NotEmpty
     @JsonProperty("reviewByCustomer")
     private String reviewByCustomer;
 
-    public Customer getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(Customer name) {
+    public void setName(String name) {
         this.name = name;
     }
 

@@ -15,7 +15,6 @@ import java.util.Objects;
     private String secondDayOfWeek = null;
     private String pickupTime;
     private int numOfBins;
-
     private boolean isCancelled;
 
 
