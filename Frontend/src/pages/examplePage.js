@@ -33,11 +33,12 @@ class ExamplePage extends BaseClass {
 
         if (example) {
             resultArea.innerHTML = `
-                <div>Name: ${example.name}</div>
-                <div>UserId: ${example.userId}</div>
-                <div>Days: ${example.daysOfWeek}</div>
-                <div>Pickup: ${example.pickupTime}</div>
-                <div>Bins: ${example.numOfBins}</div>
+                <div>Customer Name: ${example.name}</div>
+                <div>Customer ID: ${example.userId}</div>
+                <div>Day Of Pickup: ${example.daysOfWeek}</div>
+                <div>Second Day Of Pickup (if applicable): ${example.secondDayOfWeek}</div>
+                <div>Pickup Time: ${example.pickupTime}</div>
+                <div>Number Of Bins: ${example.numOfBins}</div>
             `
         } else {
         resultArea.innerHTML = "No Item";
@@ -68,10 +69,11 @@ class ExamplePage extends BaseClass {
 
             let name = document.getElementById("name-field").value;
             let day = document.getElementById("day-field").value;
+            let secondDay = document.getElementById("second-day-field").value;
             let time = document.getElementById("time-field").value;
             let bins = document.getElementById("create-bin-field").value;
 
-            const createdExample = await this.client.createExample(name, day, time, bins, this.errorHandler);
+            const createdExample = await this.client.createExample(name, day, secondDay, time, bins, this.errorHandler);
             this.dataStore.set("example", createdExample);
 
             if (createdExample) {
