@@ -109,7 +109,7 @@ public class SubscriptionService {
             customerRecordRepository.deleteById(customer.getUserId());
             cache.evict(customer.getUserId());
             dynamoDBMapper.delete(customer);
-            //customer.setCancelled(true);
+            customer.setCancelled(true);
         }else{
             throw new IllegalArgumentException("Customer does not exist.");
         }
