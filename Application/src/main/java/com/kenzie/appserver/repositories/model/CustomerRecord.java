@@ -31,7 +31,7 @@ import java.util.Objects;
         this.userId = userId;
         this.name = name;
         this.daysOfWeek = daysOfWeek;
-        this.secondDayOfWeek = null;
+        this.secondDayOfWeek = secondDayOfWeek;
         this.pickupTime = pickupTime;
         this.numOfBins = numOfBins;
     }
@@ -64,9 +64,20 @@ import java.util.Objects;
         return daysOfWeek;
     }
 
+
     public void setDaysOfWeek(String daysOfWeek) {
         this.daysOfWeek = daysOfWeek;
     }
+
+    @DynamoDBAttribute(attributeName = "SecondDayOfWeek")
+    public String getSecondDayOfWeek() {
+        return secondDayOfWeek;
+    }
+
+    public void setSecondDayOfWeek(String secondDayOfWeek) {
+        this.secondDayOfWeek = secondDayOfWeek;
+    }
+
 
     @DynamoDBAttribute(attributeName = "PickupTime")
     public String getPickupTime() {
@@ -86,14 +97,7 @@ import java.util.Objects;
         this.numOfBins = numOfBins;
     }
 
-    public String getSecondDayOfWeek() {
-        return secondDayOfWeek;
-    }
-
-    public void setSecondDayOfWeek(String secondDayOfWeek) {
-        this.secondDayOfWeek = secondDayOfWeek;
-    }
-
+    @DynamoDBAttribute(attributeName = "IsCancelled")
     public boolean isCancelled() {
         return isCancelled;
     }
@@ -105,13 +109,13 @@ import java.util.Objects;
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof CustomerRecord)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         CustomerRecord that = (CustomerRecord) o;
-        return numOfBins == that.numOfBins && userId.equals(that.userId) && daysOfWeek.equals(that.daysOfWeek) && pickupTime.equals(that.pickupTime);
+        return numOfBins == that.numOfBins && isCancelled == that.isCancelled && Objects.equals(userId, that.userId) && Objects.equals(name, that.name) && Objects.equals(daysOfWeek, that.daysOfWeek) && Objects.equals(secondDayOfWeek, that.secondDayOfWeek) && Objects.equals(pickupTime, that.pickupTime);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId, daysOfWeek, pickupTime, numOfBins);
+        return Objects.hash(userId, name, daysOfWeek, secondDayOfWeek, pickupTime, numOfBins, isCancelled);
     }
 }
