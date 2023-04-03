@@ -33,6 +33,10 @@ public class CustomerResponse {
 
     private int numOfBins;
 
+    @NotEmpty
+    @JsonProperty("isCancelled")
+    private boolean isCancelled;
+
     public CustomerResponse(String userId, String daysOfWeek, String pickupTime, int numOfBins) {
         this.userId = userId;
         this.daysOfWeek = daysOfWeek;
@@ -42,7 +46,14 @@ public class CustomerResponse {
 
     public CustomerResponse(){}
 
-    public CustomerResponse(Customer customer) {
+    public CustomerResponse(String userId, String name, String daysOfWeek, String secondDayOfWeek, String pickupTime, int numOfBins, boolean isCancelled) {
+        this.userId = userId;
+        this.name = name;
+        this.daysOfWeek = daysOfWeek;
+        this.secondDayOfWeek = secondDayOfWeek;
+        this.pickupTime = pickupTime;
+        this.numOfBins = numOfBins;
+        this.isCancelled = isCancelled;
     }
 
     public CustomerResponse(String userId, String name, String daysOfWeek, String secondDayOfWeek, String pickupTime, int numOfBins) {
@@ -100,5 +111,15 @@ public class CustomerResponse {
 
     public void setSecondDayOfWeek(String secondDayOfWeek) {
         this.secondDayOfWeek = secondDayOfWeek;
+    }
+
+    public boolean isCancelled() {
+        return isCancelled;
+    }
+
+    public void setCancelled(boolean cancelled) {
+        isCancelled = cancelled;
+
+
     }
 }

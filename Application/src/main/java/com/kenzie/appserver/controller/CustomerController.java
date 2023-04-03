@@ -75,7 +75,7 @@ public class CustomerController {
 
         subscriptionService.updateCustomer(customer);
 
-        CustomerResponse response = new CustomerResponse(customer);
+        CustomerResponse response = new CustomerResponse();
 
         return ResponseEntity.ok(response);
     }
