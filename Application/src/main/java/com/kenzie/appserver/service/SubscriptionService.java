@@ -97,7 +97,7 @@ public class SubscriptionService {
         record.setUserId(customer.getUserId());
         record.setName(customer.getName());
         record.setDaysOfWeek(customer.getDaysOfWeek());
-        record.setSecondDayOfWeek(customer.getSecondDayOfWeek()); //added second day of week
+        record.setSecondDayOfWeek(customer.getSecondDayOfWeek());
         record.setPickupTime(customer.getPickupTime());
         record.setNumOfBins(customer.getNumOfBins());
         customerRecordRepository.save(record);
