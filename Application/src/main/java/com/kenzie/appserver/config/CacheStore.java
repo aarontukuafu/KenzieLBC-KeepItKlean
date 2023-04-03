@@ -28,11 +28,13 @@ public class CacheStore {
 
     public void evict(String key) {
         // Invalidate/evict from cache
-        cache.invalidate(key);
+        if (key != null) {
+            cache.invalidate(key);
+        }
     }
 
     public void add(String key, Customer value) {
         // Add to cache
-        cache.put(key, value);
+        this.cache.put(key, value);
     }
 }
