@@ -90,10 +90,11 @@ class ExamplePage extends BaseClass {
  
         let name = document.getElementById("update-name-field").value;
         let day = document.getElementById("update-day-field").value;
+        let secondDay = document.getElementById("update-second-day-field").value;
         let time = document.getElementById("update-time-field").value;
         let bins = document.getElementById("update-bin-field").value;
  
-        const createdExample = await this.client.createExample(name, day, time, bins, this.errorHandler);
+        const createdExample = await this.client.createExample(name, day, secondDay, time, bins, this.errorHandler);
         this.dataStore.set("example", createdExample);
  
         if (createdExample) {
