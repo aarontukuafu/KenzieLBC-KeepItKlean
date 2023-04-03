@@ -129,6 +129,28 @@
     <h2>Subscription Info:</h2>
     <p id="result-info"></p>
 </div>
+<div class="card">
+    <div class="card-header">
+        <h2>Submit a Review</h2>
+    </div>
+    <div class="card-body">
+        <form id="review-form">
+            <div class="form-group">
+                <label for="reviewName-field">Your Name:</label>
+                <input type="text" class="form-control" id="reviewName-field" name="name">
+            </div>
+            <div class="form-group">
+                <label for="review-field">Your Review:</label>
+                <textarea class="form-control" id="review-field" name="review"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+<div class="card" id="review">
+    <h2>Reviews:</h2>
+    <p id="review-info"></p>
+</div>
 
 </body>
 </html>
