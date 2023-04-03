@@ -8,12 +8,12 @@ import javax.validation.constraints.NotEmpty;
 public class ReviewResponse {
     @NotEmpty
     @JsonProperty("name")
-    private Customer name;
+    private String name;
     @NotEmpty
     @JsonProperty("reviewByCustomer")
     private String reviewByCustomer;
 
-    public ReviewResponse(Customer name, String reviewByCustomer) {
+    public ReviewResponse(String name, String reviewByCustomer) {
         this.name = name;
         this.reviewByCustomer = reviewByCustomer;
     }
@@ -22,11 +22,11 @@ public class ReviewResponse {
 
     }
 
-    public Customer getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(Customer name) {
+    public void setName(String name) {
         this.name = name;
     }
 

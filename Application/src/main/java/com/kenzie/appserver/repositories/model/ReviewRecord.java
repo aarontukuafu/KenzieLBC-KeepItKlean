@@ -7,11 +7,11 @@ import com.kenzie.appserver.service.model.Customer;
 
 @DynamoDBTable(tableName = "ReviewDatabase")
 public class ReviewRecord {
-    private Customer name;
+    private String name;
     private String reviewByCustomer;
 
-    public ReviewRecord(Customer name, String reviewByCustomer) {
-        this.name = name;
+    public ReviewRecord(String name, String reviewByCustomer) {
+        this.name = Customer.class.getName();
         this.reviewByCustomer = reviewByCustomer;
     }
 
@@ -19,12 +19,12 @@ public class ReviewRecord {
 
     }
 
-    @DynamoDBHashKey(attributeName = "customerName") public Customer getName() {
-        return name;
+    @DynamoDBHashKey(attributeName = "customerName") public String getName() {
+        return Customer.class.getName();
     }
 
-    public void setName(Customer name) {
-        this.name = name;
+    public void setName(String name) {
+        this.name = Customer.class.getName();
     }
 
     @DynamoDBAttribute(attributeName = "customerReview") public String getReviewByCustomer() {

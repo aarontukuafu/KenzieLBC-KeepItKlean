@@ -1,19 +1,19 @@
 package com.kenzie.appserver.service.model;
 
 public class Review {
-    private Customer name;
+    private String name;
     private String reviewByCustomer;
 
-    public Review(Customer name, String reviewByCustomer){
+    public Review(String name, String reviewByCustomer){
         this.name = name;
         this.reviewByCustomer = reviewByCustomer;
     }
 
-    public Customer getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(Customer name) {
+    public void setName(String name) {
         this.name = name;
     }
 
