@@ -61,7 +61,7 @@ public class SubscriptionService {
 
     public void updateCustomer(Customer customer){
         if (customerRecordRepository.existsById(customer.getUserId())) {
-            if (customer.getNumOfBins() < 5) {
+            //if (customer.getNumOfBins() < 5) {
                 CustomerRecord customerRecord = new CustomerRecord();
                 customerRecord.setUserId(customer.getUserId());
                 customerRecord.setName(customer.getName());
@@ -69,10 +69,10 @@ public class SubscriptionService {
                 customerRecord.setSecondDayOfWeek(customer.getSecondDayOfWeek());
                 customerRecord.setPickupTime(customer.getPickupTime());
                 customerRecord.setNumOfBins(customer.getNumOfBins());
-                customerRecord.setCancelled(customer.isCancelled());
+                //customerRecord.setCancelled(customer.isCancelled());
                 customerRecordRepository.save(customerRecord);
                 cache.evict(customer.getUserId());
-            } else throw new InvalidCustomerInputException("Please review information entered and submit again.");
+           // } else throw new InvalidCustomerInputException("Please review information entered and submit again.");
         }
     }
 
@@ -97,6 +97,7 @@ public class SubscriptionService {
         record.setUserId(customer.getUserId());
         record.setName(customer.getName());
         record.setDaysOfWeek(customer.getDaysOfWeek());
+        record.setSecondDayOfWeek(customer.getSecondDayOfWeek());
         record.setPickupTime(customer.getPickupTime());
         record.setNumOfBins(customer.getNumOfBins());
         customerRecordRepository.save(record);

@@ -6,7 +6,7 @@ import com.kenzie.appserver.service.model.Customer;
 
 import javax.validation.constraints.NotEmpty;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonInclude//(JsonInclude.Include.NON_NULL)
 public class CustomerResponse {
 
     @NotEmpty
@@ -20,6 +20,10 @@ public class CustomerResponse {
     @JsonProperty("daysOfWeek")
     private String daysOfWeek;
 
+    //@NotEmpty
+    @JsonProperty("secondDayOfWeek")
+    private String secondDayOfWeek;
+
     @NotEmpty
     @JsonProperty("pickupTime")
     private String pickupTime;
@@ -28,6 +32,10 @@ public class CustomerResponse {
     @JsonProperty("numOfBins")
 
     private int numOfBins;
+
+    @NotEmpty
+    @JsonProperty("isCancelled")
+    private boolean isCancelled;
 
     public CustomerResponse(String userId, String daysOfWeek, String pickupTime, int numOfBins) {
         this.userId = userId;
@@ -38,7 +46,23 @@ public class CustomerResponse {
 
     public CustomerResponse(){}
 
-    public CustomerResponse(Customer customer) {
+    public CustomerResponse(String userId, String name, String daysOfWeek, String secondDayOfWeek, String pickupTime, int numOfBins, boolean isCancelled) {
+        this.userId = userId;
+        this.name = name;
+        this.daysOfWeek = daysOfWeek;
+        this.secondDayOfWeek = secondDayOfWeek;
+        this.pickupTime = pickupTime;
+        this.numOfBins = numOfBins;
+        this.isCancelled = isCancelled;
+    }
+
+    public CustomerResponse(String userId, String name, String daysOfWeek, String secondDayOfWeek, String pickupTime, int numOfBins) {
+        this.userId = userId;
+        this.name = name;
+        this.daysOfWeek = daysOfWeek;
+        this.secondDayOfWeek = secondDayOfWeek;
+        this.pickupTime = pickupTime;
+        this.numOfBins = numOfBins;
     }
 
     public String getUserId() {
@@ -79,5 +103,23 @@ public class CustomerResponse {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getSecondDayOfWeek() {
+        return secondDayOfWeek;
+    }
+
+    public void setSecondDayOfWeek(String secondDayOfWeek) {
+        this.secondDayOfWeek = secondDayOfWeek;
+    }
+
+    public boolean isCancelled() {
+        return isCancelled;
+    }
+
+    public void setCancelled(boolean cancelled) {
+        isCancelled = cancelled;
+
+
     }
 }

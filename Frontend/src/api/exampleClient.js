@@ -45,12 +45,13 @@ export default class ExampleClient extends BaseClass {
         }
     }
 
-    async createExample(name,day,time,bins,errorCallback) {
-//      Added day, time, bins
+    async createExample(name,day,secondDay,time,bins,errorCallback) {
+//      Added secondDay
         try {
             const response = await this.client.post(`example`, {
                 name: name,
                 daysOfWeek: day,
+                secondDayOfWeek: secondDay,
                 pickupTime: time,
                 numOfBins: bins
             });
@@ -59,6 +60,18 @@ export default class ExampleClient extends BaseClass {
             this.handleError("createExample", error, errorCallback);
         }
     }
+
+    async createReview(name,review,errorCallback) {
+                try {
+                    const response = await this.client.post(`review`, {
+                        name: name,
+                        reviewByCustomer: review,
+                    });
+                    return response.data;
+                } catch (error) {
+                    this.handleError("createReview", error, errorCallback);
+                }
+            }
 
     /**
      * Helper method to log the error and run any error functions.
@@ -75,12 +88,13 @@ export default class ExampleClient extends BaseClass {
         }
     }
 // should create a new post
-    async updateSubscription(name,day,time,bins,errorCallback) {
+    async updateSubscription(name,day,secondDay,time,bins,errorCallback) {
         //      Added day, time, bins
                 try {
                     const response = await this.client.post(`example`, {
                         name: name,
                         daysOfWeek: day,
+                        secondDayOfWeek: secondDay,
                         pickupTime: time,
                         numOfBins: bins
                     });

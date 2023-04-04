@@ -1,11 +1,10 @@
 package com.kenzie.appserver.controller.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.kenzie.appserver.service.model.DaysOfWeek;
 
 import javax.validation.constraints.NotEmpty;
 
-public class CustomerCreateRequest {
+public class CustomerUpdateRequest {
 
     @NotEmpty
     @JsonProperty("userId")
@@ -19,7 +18,7 @@ public class CustomerCreateRequest {
     @JsonProperty("daysOfWeek")
     private String daysOfWeek;
 
-    //@NotEmpty
+    @NotEmpty
     @JsonProperty("secondDayOfWeek")
     private String secondDayOfWeek;
 
@@ -33,11 +32,11 @@ public class CustomerCreateRequest {
 
     @NotEmpty
     @JsonProperty("isCancelled")
-    private boolean isCancelled;
+    private Boolean isCancelled;
 
     public String getUserId() {
         return userId;
-   }
+    }
 
     public void setUserId(String userId) {
         this.userId = userId;
@@ -59,6 +58,14 @@ public class CustomerCreateRequest {
         this.daysOfWeek = daysOfWeek;
     }
 
+    public String getSecondDayOfWeek() {
+        return secondDayOfWeek;
+    }
+
+    public void setSecondDayOfWeek(String secondDayOfWeek) {
+        this.secondDayOfWeek = secondDayOfWeek;
+    }
+
     public String getPickupTime() {
         return pickupTime;
     }
@@ -75,21 +82,11 @@ public class CustomerCreateRequest {
         this.numOfBins = numOfBins;
     }
 
-    public String getSecondDayOfWeek() {
-        return secondDayOfWeek;
-    }
-
-    public boolean getIsCancelled() {
+    public Boolean getCancelled() {
         return isCancelled;
     }
 
-    public void setIsCancelled(boolean isCancelled) {
-        this.isCancelled = isCancelled;
-    }
-
-    public void setSecondDayOfWeek(String secondDayOfWeek) {
-        this.secondDayOfWeek = secondDayOfWeek;
-
-
+    public void setCancelled(Boolean cancelled) {
+        isCancelled = cancelled;
     }
 }

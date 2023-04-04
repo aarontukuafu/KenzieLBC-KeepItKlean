@@ -33,17 +33,32 @@ class ExamplePage extends BaseClass {
 
         if (example) {
             resultArea.innerHTML = `
-                <div>Name: ${example.name}</div>
-                <div>UserId: ${example.userId}</div>
-                <div>Days: ${example.daysOfWeek}</div>
-                <div>Pickup: ${example.pickupTime}</div>
-                <div>Bins: ${example.numOfBins}</div>
+                <div>Customer Name: ${example.name}</div>
+                <div>Customer ID: ${example.userId}</div>
+                <div>Day Of Pickup: ${example.daysOfWeek}</div>
+                <div>Second Day Of Pickup (if applicable): ${example.secondDayOfWeek}</div>
+                <div>Pickup Time: ${example.pickupTime}</div>
+                <div>Number Of Bins: ${example.numOfBins}</div>
             `
         } else {
         resultArea.innerHTML = "No Item";
         }
     }
 
+    async renderReview() {
+        let resultArea = document.getElementById("review-info");
+
+        const review = this.dataStore.get("review");
+
+        if (review) {
+            resultArea.innerHTML = `
+                <div>Customer Name: ${example.name}</div>
+                <div>Review: ${example.reviewByCustomer}</div>
+            `
+        } else {
+        resultArea.innerHTML = "No Item";
+        }
+    }
     // Event Handlers --------------------------------------------------------------------------------------------------
 
     async onGet(event) {
@@ -68,10 +83,11 @@ class ExamplePage extends BaseClass {
 
             let name = document.getElementById("name-field").value;
             let day = document.getElementById("day-field").value;
+            let secondDay = document.getElementById("second-day-field").value;
             let time = document.getElementById("time-field").value;
             let bins = document.getElementById("create-bin-field").value;
 
-            const createdExample = await this.client.createExample(name, day, time, bins, this.errorHandler);
+            const createdExample = await this.client.createExample(name, day, secondDay, time, bins, this.errorHandler);
             this.dataStore.set("example", createdExample);
 
             if (createdExample) {
@@ -82,16 +98,35 @@ class ExamplePage extends BaseClass {
             
     }
 
+    async createReview(event) {
+        event.preventDefault();
+        this.dataStore.set("review", null);
+
+        let name = document.getElementById("reviewName-field").value;
+        let review = document.getElementById("review-field").value;
+
+        const createdExample = await this.client.createExample(name, review, this.errorHandler);
+        this.dataStore.set("review", createdReview);
+
+        if (createdReview) {
+            this.showMessage(`Created ${createdReview.name}!`)
+        } else {
+            this.errorHandler("Error creating!  Try again...");
+        }
+        
+}
+
     async subscriptionUpdate(event) {
         event.preventDefault();
         this.dataStore.set("example", null);
  
         let name = document.getElementById("update-name-field").value;
         let day = document.getElementById("update-day-field").value;
+        let secondDay = document.getElementById("update-second-day-field").value;
         let time = document.getElementById("update-time-field").value;
         let bins = document.getElementById("update-bin-field").value;
  
-        const createdExample = await this.client.createExample(name, day, time, bins, this.errorHandler);
+        const createdExample = await this.client.createExample(name, day, secondDay, time, bins, this.errorHandler);
         this.dataStore.set("example", createdExample);
  
         if (createdExample) {
