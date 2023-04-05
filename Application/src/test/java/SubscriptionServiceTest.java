@@ -7,8 +7,9 @@ import com.kenzie.appserver.service.model.Customer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import java.util.Map;
+
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 public class SubscriptionServiceTest {
@@ -60,6 +61,36 @@ public class SubscriptionServiceTest {
         //THEN
         verify(customerRecordRepository, times(1)).deleteById("1234");
 
+    }
+
+    @Test
+    public void canDeleteBin() {
+        // GIVEN
+        Customer customer = new Customer("1234", "John", "Monday", "NOON", 2);
+
+        when(customerRecordRepository.existsById(customer.getUserId())).thenReturn(true);
+
+        // WHEN
+        subscriptionService.deleteBin(customer);
+
+        // THEN
+        verify(customerRecordRepository, times(1)).existsById(customer.getUserId());
+        verify(dynamoDBMapper, times(1)).delete(customer.getNumOfBins());
+    }
+
+    @Test
+    public void canAddReview() {
+        // GIVEN
+        Customer customer = new Customer("1234", "John", "Monday", "NOON", 2);
+
+        when(customerRecordRepository.existsById(customer.getUserId())).thenReturn(true);
+
+        // WHEN
+        Map<String, String> result = subscriptionService.addReview(customer);
+
+        // THEN
+        assertEquals(1, result.size());
+        assertTrue(result.containsKey(customer.getName()));
     }
 
 
