@@ -45,6 +45,20 @@ class ExamplePage extends BaseClass {
         }
     }
 
+    async renderReview() {
+        let resultArea = document.getElementById("review-info");
+
+        const review = this.dataStore.get("review");
+
+        if (review) {
+            resultArea.innerHTML = `
+                <div>Customer Name: ${example.name}</div>
+                <div>Review: ${example.reviewByCustomer}</div>
+            `
+        } else {
+        resultArea.innerHTML = "No Item";
+        }
+    }
     // Event Handlers --------------------------------------------------------------------------------------------------
 
     async onGet(event) {
@@ -83,6 +97,24 @@ class ExamplePage extends BaseClass {
             }
             
     }
+
+    async createReview(event) {
+        event.preventDefault();
+        this.dataStore.set("review", null);
+
+        let name = document.getElementById("reviewName-field").value;
+        let review = document.getElementById("review-field").value;
+
+        const createdExample = await this.client.createExample(name, review, this.errorHandler);
+        this.dataStore.set("review", createdReview);
+
+        if (createdReview) {
+            this.showMessage(`Created ${createdReview.name}!`)
+        } else {
+            this.errorHandler("Error creating!  Try again...");
+        }
+        
+}
 
     async subscriptionUpdate(event) {
         event.preventDefault();
