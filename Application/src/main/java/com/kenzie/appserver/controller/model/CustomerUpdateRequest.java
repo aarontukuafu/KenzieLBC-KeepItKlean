@@ -30,9 +30,9 @@ public class CustomerUpdateRequest {
     @JsonProperty("numOfBins")
     private int numOfBins;
 
-    @NotEmpty
+    /*@NotEmpty
     @JsonProperty("isCancelled")
-    private Boolean isCancelled;
+    private Boolean isCancelled;*/
 
     public String getUserId() {
         return userId;
@@ -82,11 +82,11 @@ public class CustomerUpdateRequest {
         this.numOfBins = numOfBins;
     }
 
-    public Boolean getCancelled() {
+/*    public Boolean getCancelled() {
         return isCancelled;
     }
 
     public void setCancelled(Boolean cancelled) {
         isCancelled = cancelled;
-    }
+    }*/
 }
