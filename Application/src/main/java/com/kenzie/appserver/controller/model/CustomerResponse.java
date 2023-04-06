@@ -33,9 +33,9 @@ public class CustomerResponse {
 
     private int numOfBins;
 
-    @NotEmpty
+    /*@NotEmpty
     @JsonProperty("isCancelled")
-    private boolean isCancelled;
+    private boolean isCancelled;*/
 
     public CustomerResponse(String userId, String daysOfWeek, String pickupTime, int numOfBins) {
         this.userId = userId;
@@ -46,7 +46,7 @@ public class CustomerResponse {
 
     public CustomerResponse(){}
 
-    public CustomerResponse(String userId, String name, String daysOfWeek, String secondDayOfWeek, String pickupTime, int numOfBins, boolean isCancelled) {
+    /*public CustomerResponse(String userId, String name, String daysOfWeek, String secondDayOfWeek, String pickupTime, int numOfBins, boolean isCancelled) {
         this.userId = userId;
         this.name = name;
         this.daysOfWeek = daysOfWeek;
@@ -54,7 +54,7 @@ public class CustomerResponse {
         this.pickupTime = pickupTime;
         this.numOfBins = numOfBins;
         this.isCancelled = isCancelled;
-    }
+    }*/
 
     public CustomerResponse(String userId, String name, String daysOfWeek, String secondDayOfWeek, String pickupTime, int numOfBins) {
         this.userId = userId;
@@ -113,7 +113,7 @@ public class CustomerResponse {
         this.secondDayOfWeek = secondDayOfWeek;
     }
 
-    public boolean isCancelled() {
+    /*public boolean isCancelled() {
         return isCancelled;
     }
 
@@ -121,5 +121,5 @@ public class CustomerResponse {
         isCancelled = cancelled;
 
 
-    }
+    }*/
 }

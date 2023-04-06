@@ -9,6 +9,6 @@ import java.util.List;
 
 @EnableScan
 public interface CustomerRecordRepository extends CrudRepository<CustomerRecord, String> {
-    List<CustomerRecord> getCustomerByUserId (String userId);
+    //List<CustomerRecord> getCustomerByUserId (String userId);
 }
 
