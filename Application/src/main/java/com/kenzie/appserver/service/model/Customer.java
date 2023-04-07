@@ -8,7 +8,7 @@ public class Customer {
     private String name;
     //can be change back to enum
     private String daysOfWeek;
-    private String secondDayOfWeek = null;
+    private String secondDayOfWeek;
 
     private String pickupTime;
     private int numOfBins;
@@ -21,7 +21,6 @@ public class Customer {
         this.daysOfWeek = daysOfWeek;
         this.pickupTime = pickupTime;
         this.numOfBins = numOfBins;
-        this.isCancelled = false;
     }
 
     public Customer(String userId, String name, String daysOfWeek,String secondDayOfWeek, String pickupTime, int numOfBins) {
@@ -31,7 +30,7 @@ public class Customer {
         this.secondDayOfWeek = secondDayOfWeek;
         this.pickupTime = pickupTime;
         this.numOfBins = numOfBins;
-        this.isCancelled = false;
+        //this.isCancelled = false;
     }
 
     public Customer(String userId, String name, String daysOfWeek, String pickupTime, String secondDayOfWeek, int numOfBins, boolean isCancelled) {
