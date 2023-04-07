@@ -91,7 +91,8 @@ class ExamplePage extends BaseClass {
             this.dataStore.set("example", createdExample);
 
             if (createdExample) {
-                this.showMessage(`Created ${createdExample.name}!`)
+                this.showMessage(`Created ${createdExample.name}!`);
+                // window.location.href = 'http://localhost:5001/review.html/' + createdExample.userId;
             } else {
                 this.errorHandler("Error creating!  Try again...");
             }
