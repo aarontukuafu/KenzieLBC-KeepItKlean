@@ -11,7 +11,7 @@ public class ReviewRecord {
     private String reviewByCustomer;
 
     public ReviewRecord(String name, String reviewByCustomer) {
-        this.name = Customer.class.getName();
+        this.name = name;
         this.reviewByCustomer = reviewByCustomer;
     }
 
@@ -20,11 +20,11 @@ public class ReviewRecord {
     }
 
     @DynamoDBHashKey(attributeName = "customerName") public String getName() {
-        return Customer.class.getName();
+        return name;
     }
 
     public void setName(String name) {
-        this.name = Customer.class.getName();
+        this.name = name;
     }
 
     @DynamoDBAttribute(attributeName = "customerReview") public String getReviewByCustomer() {
