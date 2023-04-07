@@ -2,6 +2,8 @@ package com.kenzie.appserver.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kenzie.appserver.IntegrationTest;
+import com.kenzie.appserver.controller.model.CustomerCreateRequest;
+import com.kenzie.appserver.controller.model.CustomerUpdateRequest;
 import com.kenzie.appserver.service.SubscriptionService;
 import com.kenzie.appserver.service.model.Customer;
 import net.andreinc.mockneat.MockNeat;
@@ -13,8 +15,15 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.testcontainers.shaded.com.github.dockerjava.core.MediaType;
 
+import java.time.LocalTime;
 import java.util.UUID;
 
+import static javax.swing.UIManager.get;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.springframework.http.RequestEntity.put;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.testcontainers.shaded.org.awaitility.Awaitility.given;
 import static sun.nio.cs.Surrogate.is;
@@ -59,5 +68,33 @@ public class CustomerControllerTest {
 //                .andExpect(status().isOk());
 
     }
-
+    @Test
+    void updateCustomer_Successful() throws Exception {
+        // create a customer
+        CustomerCreateRequest createRequest = new CustomerCreateRequest();
+//        Customer customer = content(createRequest);
+//        // create a request to update the customer
+//        CustomerUpdateRequest updateRequest = new CustomerUpdateRequest();
+//        updateRequest.setUserId(customer.getUserId());
+//        updateRequest.setName(mockNeat.strings().size(10).val());
+//        updateRequest.setDaysOfWeek("Mon,Tue");
+//        updateRequest.setPickupTime(String.valueOf(LocalTime.of(14, 0)));
+//        updateRequest.setSecondDayOfWeek(null);
+//        updateRequest.setNumOfBins(2);
+//        // call API to update the customer
+//        mvc.perform(put("/example")
+//                        .contentType(MediaType.APPLICATION_JSON)
+//                        .content(mapper.writeValueAsString(updateRequest))
+//                        .accept(MediaType.APPLICATION_JSON))
+//                .andExpect(status().isOk());
+//        // check if the customer has been updated
+//        Customer updatedCustomer = subscriptionService.findCustomerById(customer.getUserId());
+//        assertNotNull(updatedCustomer);
+//        assertEquals(updateRequest.getName(), updatedCustomer.getName());
+//        assertEquals(updateRequest.getDaysOfWeek(), updatedCustomer.getDaysOfWeek());
+//        assertEquals(updateRequest.getPickupTime(), updatedCustomer.getPickupTime());
+//        assertEquals(updateRequest.getSecondDayOfWeek(), updatedCustomer.getSecondDayOfWeek());
+//        assertEquals(updateRequest.getNumOfBins(), updatedCustomer.getNumOfBins());
+//    }
+    }
 }
