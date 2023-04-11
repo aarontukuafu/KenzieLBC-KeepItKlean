@@ -2,6 +2,7 @@ package com.kenzie.appserver;
 
 import com.kenzie.appserver.controller.model.CustomerCreateRequest;
 import com.kenzie.appserver.controller.model.CustomerUpdateRequest;
+import com.kenzie.appserver.controller.model.ReviewCreateRequest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.testcontainers.shaded.com.fasterxml.jackson.databind.ObjectMapper;
@@ -45,6 +46,19 @@ public class QueryUtility {
         public ResultActions cancelSubscription(String userId) throws Exception{
             return mvc.perform(delete("/example/{userId}/cancel", userId)
                     .accept(String.valueOf(MediaType.APPLICATION_JSON)));
+        }
+
+        public ResultActions postNewReview(ReviewCreateRequest reviewCreateRequest) throws Exception{
+            return mvc.perform(post("/example/review")
+                    .accept(String.valueOf(MediaType.APPLICATION_JSON))
+                    .contentType(String.valueOf(MediaType.APPLICATION_JSON))
+                    .content(mapper.writeValueAsString(reviewCreateRequest)));
+        }
+
+        public ResultActions getAllReviews(ReviewCreateRequest reviewCreateRequest) throws Exception{
+            return mvc.perform(get("/example")
+                    .accept(String.valueOf(MediaType.APPLICATION_JSON))
+                    .contentType(String.valueOf(MediaType.APPLICATION_JSON)));
         }
     }
 }
