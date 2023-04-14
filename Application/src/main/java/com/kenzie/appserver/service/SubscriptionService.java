@@ -78,17 +78,21 @@ public class SubscriptionService {
 
     public void deleteBin (Customer customer){
         if (customerRecordRepository.existsById(customer.getUserId())){
-            if (customer.getNumOfBins() > 0 || customer.getNumOfBins() <= 5 ) {
+            if (customer.getNumOfBins() > 0 && customer.getNumOfBins() <= 5 ) {
                 CustomerRecord customerRecord = new CustomerRecord();
                 customerRecord.setUserId(customer.getUserId());
-                customerRecord.setUserId(customer.getUserId());
+                customerRecord.setName(customer.getName());
                 customerRecord.setDaysOfWeek(customer.getDaysOfWeek());
                 customerRecord.setPickupTime(customer.getPickupTime());
                 customerRecord.setNumOfBins(customer.getNumOfBins());
+                customerRecord.setSecondDayOfWeek(customer.getSecondDayOfWeek());
+                customerRecordRepository.save(customerRecord);
                 dynamoDBMapper.delete(customer.getNumOfBins());
-            } else throw new IllegalArgumentException();
-            System.out.println("Unable to delete trash bin. Customer cannot have zero bins, to remove all bins please" +
-                    "visit the cancel subscription option");
+                cache.evict(customer.getUserId());
+            } else throw new IllegalArgumentException("Unable to delete trash bin. Number of bins must be between 1 and 5, to remove all bins please" +
+                    "visit the cancel subscription option ");
+//            System.out.println("Unable to delete trash bin. Customer cannot have zero bins, to remove all bins please" +
+//                    "visit the cancel subscription option");
         }
     }
 
