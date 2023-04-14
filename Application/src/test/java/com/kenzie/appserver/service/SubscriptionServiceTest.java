@@ -53,25 +53,35 @@ public class SubscriptionServiceTest {
     }
 
     @Test
-    public void testCancelService(){
+    public void canCancelService(){
         //GIVEN
-        SubscriptionService subscriptionService1 = new SubscriptionService(customerRecordRepository);
+        //SubscriptionService subscriptionService1 = new SubscriptionService(customerRecordRepository);
         Customer customer = new Customer("1234", "John", "Monday", "NOON", 2);
+        when(customerRecordRepository.existsById(customer.getUserId())).thenReturn(true);
 
         //WHEN
-        subscriptionService1.cancelService(customer);
+        subscriptionService.cancelService(customer);
 
         //THEN
-        verify(customerRecordRepository, times(1)).deleteById("1234");
-
+        verify(customerRecordRepository, times(1)).deleteById(customer.getUserId());
+        verify(cache, times(1)).evict(customer.getUserId());
+        verify(dynamoDBMapper, times(1)).delete(customer);
+        assertTrue(customer.isCancelled(), "Service is cancelled");
     }
 
     @Test
     public void canDeleteBin() {
         // GIVEN
         Customer customer = new Customer("1234", "John", "Monday", "NOON", 2);
+        CustomerRecord customerRecord = new CustomerRecord();
+        customerRecord.setUserId("1234");
+        customerRecord.setName("John");
+        customerRecord.setDaysOfWeek("Monday");
+        customerRecord.setPickupTime("NOON");
+        customerRecord.setNumOfBins(2);
 
         when(customerRecordRepository.existsById(customer.getUserId())).thenReturn(true);
+        when(customerRecordRepository.save(customerRecord)).thenReturn(customerRecord);
 
         // WHEN
         subscriptionService.deleteBin(customer);
@@ -79,6 +89,8 @@ public class SubscriptionServiceTest {
         // THEN
         verify(customerRecordRepository, times(1)).existsById(customer.getUserId());
         verify(dynamoDBMapper, times(1)).delete(customer.getNumOfBins());
+        verify(customerRecordRepository,times(1)).save(customerRecord);
+        verify(cache,times(1)).evict(customer.getUserId());
     }
 
     @Test
