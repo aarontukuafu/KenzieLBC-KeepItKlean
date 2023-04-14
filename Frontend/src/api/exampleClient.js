@@ -31,10 +31,10 @@ export default class ExampleClient extends BaseClass {
      */
     async getExample(id, errorCallback) {
         try {
-            const response = await this.client.get(`/example/${id}`);
+            const response = await this.client.get(`/example/${userId}`);
             return response.data;
         } catch (error) {
-            this.handleError("getConcert", error, errorCallback)
+            this.handleError("getSubscription", error, errorCallback)
         }
     }
 
