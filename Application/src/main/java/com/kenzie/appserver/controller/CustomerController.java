@@ -42,7 +42,7 @@ public class CustomerController {
     @PostMapping
     public ResponseEntity<CustomerResponse> addNewCustomer(@RequestBody CustomerCreateRequest customerCreateRequest) {
 
-        Customer customer = new Customer(randomUUID().toString(),
+        Customer customer = new Customer(customerCreateRequest.getUserId(),
                 customerCreateRequest.getName(),
                 customerCreateRequest.getDaysOfWeek(),
                 customerCreateRequest.getSecondDayOfWeek(),
@@ -66,17 +66,31 @@ public class CustomerController {
     @PutMapping
     public ResponseEntity<CustomerResponse> updateCustomer(@RequestBody CustomerUpdateRequest customerUpdateRequest) {
 
-        Customer customer = new Customer(customerUpdateRequest.getUserId(),
-                customerUpdateRequest.getName(),
-                customerUpdateRequest.getDaysOfWeek(),
-                customerUpdateRequest.getPickupTime(),
-                customerUpdateRequest.getSecondDayOfWeek(),
-                customerUpdateRequest.getNumOfBins());
+//        Customer customer = new Customer(customerId,
+//                customerUpdateRequest.getName(),
+//                customerUpdateRequest.getDaysOfWeek(),
+//                customerUpdateRequest.getPickupTime(),
+//                customerUpdateRequest.getSecondDayOfWeek(),
+//                customerUpdateRequest.getNumOfBins());
                 //customerUpdateRequest.getCancelled());
+
+        Customer customer = new Customer();
+        customer.setUserId(customerUpdateRequest.getUserId());
+        customer.setDaysOfWeek(customerUpdateRequest.getDaysOfWeek());
+        customer.setSecondDayOfWeek(customerUpdateRequest.getSecondDayOfWeek());
+        customer.setPickupTime(customerUpdateRequest.getPickupTime());
+        customer.setNumOfBins(customerUpdateRequest.getNumOfBins());
+        customer.setName(customerUpdateRequest.getName());
 
         subscriptionService.updateCustomer(customer);
 
         CustomerResponse response = new CustomerResponse();
+        response.setUserId(customer.getUserId());
+        response.setDaysOfWeek(customer.getDaysOfWeek());
+        response.setSecondDayOfWeek(customer.getSecondDayOfWeek());
+        response.setPickupTime(customer.getPickupTime());
+        response.setNumOfBins(customer.getNumOfBins());
+        response.setName(customer.getName());
 
         return ResponseEntity.ok(response);
     }

@@ -9,7 +9,7 @@ class ExamplePage extends BaseClass {
 
     constructor() {
         super();
-        this.bindClassMethods(['onGet', 'onCreate', 'renderExample'], this);
+        this.bindClassMethods(['onGet', 'onCreate', 'renderExample', 'renderReview', 'createReview', 'subscriptionUpdate'], this);
         this.dataStore = new DataStore();
     }
 
@@ -19,6 +19,7 @@ class ExamplePage extends BaseClass {
     async mount() {
         document.getElementById('get-by-id-form').addEventListener('submit', this.onGet);
         document.getElementById('subscription-form').addEventListener('submit', this.onCreate);
+        document.getElementById('update-subscription-form').addEventListener('submit', this.subscriptionUpdate);
         this.client = new ExampleClient();
 
         this.dataStore.addChangeListener(this.renderExample)
@@ -119,19 +120,23 @@ class ExamplePage extends BaseClass {
 
     async subscriptionUpdate(event) {
         event.preventDefault();
+        console.log("test#0")
         this.dataStore.set("example", null);
+        console.log("testing...")
  
         let name = document.getElementById("update-name-field").value;
+        let id = document.getElementById("user-id-field").value;
         let day = document.getElementById("update-day-field").value;
         let secondDay = document.getElementById("update-second-day-field").value;
         let time = document.getElementById("update-time-field").value;
         let bins = document.getElementById("update-bin-field").value;
  
-        const createdExample = await this.client.createExample(name, day, secondDay, time, bins, this.errorHandler);
-        this.dataStore.set("example", createdExample);
+        const updateSubscription = await this.client.updateSubscription(name, id, day, secondDay, time, bins, this.errorHandler);
+        this.dataStore.set("example", updateSubscription);
+        console.log("testing...1")
  
-        if (createdExample) {
-        this.showMessage(`Created ${createdExample.name}!`)
+        if (updateSubscription) {
+        this.showMessage(`Created ${updateSubscription.name}!`)
             } else {
             this.errorHandler("Error creating!  Try again...");
             }
