@@ -21,8 +21,8 @@ public class SubscriptionService {
     @Autowired
     public SubscriptionService(CustomerRecordRepository customerRecordRepository){
         this.customerRecordRepository = customerRecordRepository;
-        this.cache = cache;
-        this.dynamoDBMapper = dynamoDBMapper;
+//        this.cache = cache;
+//        this.dynamoDBMapper = dynamoDBMapper;
     }
 
     public List<Customer> findAllCustomers() {
@@ -33,6 +33,7 @@ public class SubscriptionService {
             customers.add(new Customer(record.getUserId(),
                     record.getName(),
                     record.getDaysOfWeek(),
+                    record.getSecondDayOfWeek(),
                     record.getPickupTime(),
                     record.getNumOfBins()));
         }
@@ -49,6 +50,7 @@ public class SubscriptionService {
                 .map(customer1 -> new Customer(customer1.getUserId(),
                         customer1.getName(),
                         customer1.getDaysOfWeek(),
+                        customer1.getSecondDayOfWeek(),
                         customer1.getPickupTime(),
                         customer1.getNumOfBins()))
                 .orElse(null);
@@ -62,6 +64,7 @@ public class SubscriptionService {
     public void updateCustomer(Customer customer){
         if (customerRecordRepository.existsById(customer.getUserId())) {
             //if (customer.getNumOfBins() < 5) {
+<<<<<<< HEAD
             CustomerRecord customerRecord = new CustomerRecord();
             customerRecord.setUserId(customer.getUserId());
             customerRecord.setName(customer.getName());
@@ -73,6 +76,19 @@ public class SubscriptionService {
             customerRecordRepository.save(customerRecord);
             cache.evict(customer.getUserId());
             // } else throw new InvalidCustomerInputException("Please review information entered and submit again.");
+=======
+                CustomerRecord customerRecord = new CustomerRecord();
+                customerRecord.setUserId(customer.getUserId());
+                customerRecord.setName(customer.getName());
+                customerRecord.setDaysOfWeek(customer.getDaysOfWeek());
+                customerRecord.setSecondDayOfWeek(customer.getSecondDayOfWeek());
+                customerRecord.setPickupTime(customer.getPickupTime());
+                customerRecord.setNumOfBins(customer.getNumOfBins());
+                //customerRecord.setCancelled(customer.isCancelled());
+                customerRecordRepository.save(customerRecord);
+//                cache.evict(customer.getUserId());
+           // } else throw new InvalidCustomerInputException("Please review information entered and submit again.");
+>>>>>>> main
         }
     }
 
@@ -113,7 +129,7 @@ public class SubscriptionService {
             customerRecordRepository.deleteById(customer.getUserId());
             cache.evict(customer.getUserId());
             dynamoDBMapper.delete(customer);
-            customer.setCancelled(true);
+//            customer.setCancelled(true);
         }else{
             throw new IllegalArgumentException("Customer does not exist.");
         }
