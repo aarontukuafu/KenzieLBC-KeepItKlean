@@ -5,6 +5,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 import com.kenzie.appserver.service.model.DaysOfWeek;
 import com.kenzie.appserver.service.model.PickupTime;
+import org.springframework.data.annotation.Id;
 
 import java.util.Objects;
 
@@ -18,13 +19,13 @@ import java.util.Objects;
     //private boolean isCancelled;
 
 
-    public CustomerRecord(String userId,String name,String daysOfWeek, String pickupTime, int numOfBins) {
-        this.userId = userId;
-        this.name = name;
-        this.daysOfWeek = daysOfWeek;
-        this.pickupTime = pickupTime;
-        this.numOfBins = numOfBins;
-    }
+//    public CustomerRecord(String userId,String name,String daysOfWeek, String pickupTime, int numOfBins) {
+//        this.userId = userId;
+//        this.name = name;
+//        this.daysOfWeek = daysOfWeek;
+//        this.pickupTime = pickupTime;
+//        this.numOfBins = numOfBins;
+//    }
 
     public CustomerRecord(String userId, String name, String daysOfWeek, String secondDayOfWeek, String pickupTime, int numOfBins) {
         this.userId = userId;
@@ -40,6 +41,7 @@ import java.util.Objects;
     }
     //created empty constructor
 
+    @Id
     @DynamoDBHashKey(attributeName = "UserId")
     public String getUserId() {
         return userId;

@@ -38,9 +38,9 @@ public class CustomerUpdateRequest {
         return userId;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
+//    public void setUserId(String userId) {
+//        this.userId = userId;
+//    }
 
     public String getName() {
         return name;

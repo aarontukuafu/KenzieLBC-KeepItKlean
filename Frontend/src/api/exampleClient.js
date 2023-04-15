@@ -6,7 +6,7 @@ export default class ExampleClient extends BaseClass {
 
     constructor(props = {}){
         super();
-        const methodsToBind = ['clientLoaded', 'getExample', 'createExample'];
+        const methodsToBind = ['clientLoaded', 'getExample', 'createExample', 'createReview', 'updateSubscription'];
         this.bindClassMethods(methodsToBind, this);
         this.props = props;
         this.clientLoaded(axios);
@@ -66,8 +66,27 @@ export default class ExampleClient extends BaseClass {
                 }
             }
 
+    async updateSubscription(name,id, day,secondDay,time,bins,errorCallback) {
+        //      Added day, time, bins
+        try {
+            const response = await this.client.put(`example`, {
+                userId: id,
+                name: name,
+                daysOfWeek: day,
+                secondDayOfWeek: secondDay,
+                pickupTime: time,
+                numOfBins: bins
+            });
+            console.log(response.data)
+            return response.data;
+        } catch (error) {
+            this.handleError("updateSubscription", error, errorCallback);
+        }
+    }
+
     /**
      * Helper method to log the error and run any error functions.
+     * @param method
      * @param error The error received from the server.
      * @param errorCallback (Optional) A function to execute if the call fails.
      */
@@ -81,21 +100,6 @@ export default class ExampleClient extends BaseClass {
         }
     }
 // should create a new post
-    async updateSubscription(name,day,secondDay,time,bins,errorCallback) {
-        //      Added day, time, bins
-                try {
-                    const response = await this.client.post(`example`, {
-                        name: name,
-                        daysOfWeek: day,
-                        secondDayOfWeek: secondDay,
-                        pickupTime: time,
-                        numOfBins: bins
-                    });
-                    return response.data;
-                } catch (error) {
-                    this.handleError("createExample", error, errorCallback);
-                }
-            }
 }
 
 
