@@ -20,9 +20,11 @@ class ExamplePage extends BaseClass {
         document.getElementById('get-by-id-form').addEventListener('submit', this.onGet);
         document.getElementById('subscription-form').addEventListener('submit', this.onCreate);
         document.getElementById('update-subscription-form').addEventListener('submit', this.subscriptionUpdate);
+        document.getElementById('review-form').addEventListener('submit', this.createReview);
         this.client = new ExampleClient();
 
-        this.dataStore.addChangeListener(this.renderExample)
+        this.dataStore.addChangeListener(this.renderExample);
+        this.dataStore.addChangeListener(this.renderReview);
     }
 
     // Render Methods --------------------------------------------------------------------------------------------------
@@ -53,8 +55,8 @@ class ExamplePage extends BaseClass {
 
         if (review) {
             resultArea.innerHTML = `
-                <div>Customer Name: ${example.name}</div>
-                <div>Review: ${example.reviewByCustomer}</div>
+                <div>Customer Name: ${review.name}</div>
+                <div>Review: ${review.reviewByCustomer}</div>
             `
         } else {
         resultArea.innerHTML = "No Item";
@@ -107,7 +109,7 @@ class ExamplePage extends BaseClass {
         let name = document.getElementById("reviewName-field").value;
         let review = document.getElementById("review-field").value;
 
-        const createdExample = await this.client.createExample(name, review, this.errorHandler);
+        const createdReview = await this.client.createReview(name, review, this.errorHandler);
         this.dataStore.set("review", createdReview);
 
         if (createdReview) {

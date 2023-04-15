@@ -29,7 +29,7 @@ export default class ExampleClient extends BaseClass {
      * @param errorCallback (Optional) A function to execute if the call fails.
      * @returns The concert
      */
-    async getExample(id, errorCallback) {
+    async getExample(userId, errorCallback) {
         try {
             const response = await this.client.get(`/example/${userId}`);
             return response.data;
@@ -54,11 +54,11 @@ export default class ExampleClient extends BaseClass {
         }
     }
 
-    async createReview(name,review,errorCallback) {
+    async createReview(name,reviewByCustomer,errorCallback) {
                 try {
                     const response = await this.client.post(`review`, {
                         name: name,
-                        reviewByCustomer: review,
+                        reviewByCustomer: reviewByCustomer
                     });
                     return response.data;
                 } catch (error) {

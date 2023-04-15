@@ -41,10 +41,10 @@ public class SubscriptionService {
     }
 
     public Customer findCustomerById(String userId) {
-        Customer cachedCustomer = cache.get(userId);
-        if (cachedCustomer != null) {
-            return cachedCustomer;
-        }
+//        Customer cachedCustomer = cache.get(userId);
+//        if (cachedCustomer != null) {
+//            return cachedCustomer;
+//        }
         Customer customer = customerRecordRepository
                 .findById(userId)
                 .map(customer1 -> new Customer(customer1.getUserId(),
@@ -54,9 +54,9 @@ public class SubscriptionService {
                         customer1.getPickupTime(),
                         customer1.getNumOfBins()))
                 .orElse(null);
-        if (customer != null) {
-            cache.add(customer.getUserId(), customer);
-        }
+//        if (customer != null) {
+//            cache.add(customer.getUserId(), customer);
+//        }
         return customer;
     }
 
