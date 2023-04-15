@@ -78,7 +78,7 @@ public class CustomerController {
 //                customerUpdateRequest.getPickupTime(),
 //                customerUpdateRequest.getSecondDayOfWeek(),
 //                customerUpdateRequest.getNumOfBins());
-                //customerUpdateRequest.getCancelled());
+        //customerUpdateRequest.getCancelled());
 
         Customer customer = new Customer();
         customer.setUserId(customerUpdateRequest.getUserId());

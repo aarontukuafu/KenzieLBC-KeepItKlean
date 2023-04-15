@@ -64,17 +64,17 @@ public class SubscriptionService {
     public void updateCustomer(Customer customer){
         if (customerRecordRepository.existsById(customer.getUserId())) {
             //if (customer.getNumOfBins() < 5) {
-                CustomerRecord customerRecord = new CustomerRecord();
-                customerRecord.setUserId(customer.getUserId());
-                customerRecord.setName(customer.getName());
-                customerRecord.setDaysOfWeek(customer.getDaysOfWeek());
-                customerRecord.setSecondDayOfWeek(customer.getSecondDayOfWeek());
-                customerRecord.setPickupTime(customer.getPickupTime());
-                customerRecord.setNumOfBins(customer.getNumOfBins());
-                //customerRecord.setCancelled(customer.isCancelled());
-                customerRecordRepository.save(customerRecord);
+            CustomerRecord customerRecord = new CustomerRecord();
+            customerRecord.setUserId(customer.getUserId());
+            customerRecord.setName(customer.getName());
+            customerRecord.setDaysOfWeek(customer.getDaysOfWeek());
+            customerRecord.setSecondDayOfWeek(customer.getSecondDayOfWeek());
+            customerRecord.setPickupTime(customer.getPickupTime());
+            customerRecord.setNumOfBins(customer.getNumOfBins());
+            //customerRecord.setCancelled(customer.isCancelled());
+            customerRecordRepository.save(customerRecord);
 //                cache.evict(customer.getUserId());
-           // } else throw new InvalidCustomerInputException("Please review information entered and submit again.");
+            // } else throw new InvalidCustomerInputException("Please review information entered and submit again.");
         }
     }
 
