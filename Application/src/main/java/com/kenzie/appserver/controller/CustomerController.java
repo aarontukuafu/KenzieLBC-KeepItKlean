@@ -72,7 +72,7 @@ public class CustomerController {
                 customerUpdateRequest.getPickupTime(),
                 customerUpdateRequest.getSecondDayOfWeek(),
                 customerUpdateRequest.getNumOfBins());
-                //customerUpdateRequest.getCancelled());
+        //customerUpdateRequest.getCancelled());
 
         subscriptionService.updateCustomer(customer);
 
