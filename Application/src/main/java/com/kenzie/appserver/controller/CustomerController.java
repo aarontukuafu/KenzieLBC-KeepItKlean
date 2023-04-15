@@ -33,8 +33,14 @@ public class CustomerController {
             return ResponseEntity.notFound().build();
         }
 
+
         CustomerResponse response = new CustomerResponse();
         response.setUserId(customer.getUserId());
+        response.setDaysOfWeek(customer.getDaysOfWeek());
+        response.setSecondDayOfWeek(customer.getSecondDayOfWeek());
+        response.setPickupTime(customer.getPickupTime());
+        response.setNumOfBins(customer.getNumOfBins());
+        response.setName(customer.getName());
 
         return ResponseEntity.ok(response);
     }
